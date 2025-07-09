@@ -17,15 +17,10 @@ try {
 
 // Check admin status and get user info
 $uid = $_SESSION['odmsaid'];
-$isAdmin = false;
-$defaultSite = '';
 $stmt = $dbh->prepare("SELECT AdminName, MobileNumber AS SiteName FROM tbladmin WHERE ID = ? LIMIT 1");
 $stmt->execute([$uid]);
 $user = $stmt->fetch();
-if ($user) {
-    $isAdmin = ($user['AdminName'] === 'Admin');
-    $defaultSite = $user['SiteName'];
-}
+$defaultSite = $user ? $user['SiteName'] : '';
 
 // Fetch tourism sites and years with error handling
 try {
@@ -37,10 +32,9 @@ try {
 
 // Sanitize input data
 $filters = [
-    'nama_wisata' => filter_var($_POST['nama_wisata'] ?? ($isAdmin ? '' : $defaultSite), FILTER_SANITIZE_STRING),
+    'nama_wisata' => filter_var($_POST['nama_wisata'] ?? '', FILTER_SANITIZE_STRING),
     'start_year' => filter_var($_POST['start_year'] ?? '', FILTER_VALIDATE_INT),
-    'end_year' => filter_var($_POST['end_year'] ?? '', FILTER_VALIDATE_INT),
-    'user_year' => filter_var($_POST['user_year'] ?? '', FILTER_VALIDATE_INT)
+    'end_year' => filter_var($_POST['end_year'] ?? '', FILTER_VALIDATE_INT)
 ];
 
 /**
@@ -91,33 +85,22 @@ function run_sarima_prediction($data)
 
 // Process prediction request if filters exist
 $prediction = null;
-if (!empty($filters['nama_wisata']) || ($isAdmin && $filters['start_year'] && $filters['end_year']) || (!$isAdmin && $filters['user_year'])) {
+if (!empty($filters['nama_wisata']) && $filters['start_year'] && $filters['end_year']) {
     try {
         // Build dynamic SQL query
         $sql = "SELECT YEAR(Tanggal) AS tahun, MONTH(Tanggal) AS bulan, 
-                SUM(JumlahPengunjung) AS total FROM tourism_data WHERE ";
-
-        $conditions = [];
-        $params = [];
-
-        if (!empty($filters['nama_wisata'])) {
-            $conditions[] = "NamaWisata = :nama_wisata";
-            $params[':nama_wisata'] = $filters['nama_wisata'];
-        }
-
-        if ($isAdmin && $filters['start_year'] && $filters['end_year']) {
-            $conditions[] = "YEAR(Tanggal) BETWEEN :start_year AND :end_year";
-            $params[':start_year'] = $filters['start_year'];
-            $params[':end_year'] = $filters['end_year'];
-        } elseif (!$isAdmin && $filters['user_year']) {
-            $conditions[] = "YEAR(Tanggal) = :user_year";
-            $params[':user_year'] = $filters['user_year'];
-        }
-
-        $sql .= implode(" AND ", $conditions) . " GROUP BY YEAR(Tanggal), MONTH(Tanggal) ORDER BY tahun, bulan";
+                SUM(JumlahPengunjung) AS total FROM tourism_data 
+                WHERE NamaWisata = :nama_wisata 
+                AND YEAR(Tanggal) BETWEEN :start_year AND :end_year
+                GROUP BY YEAR(Tanggal), MONTH(Tanggal) 
+                ORDER BY tahun, bulan";
 
         $stmt = $dbh->prepare($sql);
-        $stmt->execute($params);
+        $stmt->execute([
+            ':nama_wisata' => $filters['nama_wisata'],
+            ':start_year' => $filters['start_year'],
+            ':end_year' => $filters['end_year']
+        ]);
         $historical_data = $stmt->fetchAll();
 
         if (count($historical_data) < 12) {
@@ -136,9 +119,7 @@ if (!empty($filters['nama_wisata']) || ($isAdmin && $filters['start_year'] && $f
             'forecast_periods' => 12,
             'metadata' => [
                 'tourism_place' => $filters['nama_wisata'],
-                'time_range' => $isAdmin ?
-                    "{$filters['start_year']}-{$filters['end_year']}" :
-                    "{$filters['user_year']}"
+                'time_range' => "{$filters['start_year']}-{$filters['end_year']}"
             ]
         ];
 
@@ -149,7 +130,7 @@ if (!empty($filters['nama_wisata']) || ($isAdmin && $filters['start_year'] && $f
 }
 
 // Determine prediction year for display
-$lastYear = $isAdmin ? ($filters['end_year'] ?? max($tahunList)) : ($filters['user_year'] ?? max($tahunList));
+$lastYear = $filters['end_year'] ?? max($tahunList);
 $predYear = $lastYear ? $lastYear + 1 : date('Y') + 1;
 
 // Month names for display
@@ -191,69 +172,47 @@ $months = [
                                         <div class="row">
                                             <div class="form-group col-md-4">
                                                 <label>Tempat Wisata</label>
-                                                <?php if ($isAdmin): ?>
-                                                    <select name="nama_wisata" class="form-control" required>
-                                                        <option value="">Select Site</option>
-                                                        <?php foreach ($wisataList as $wisata): ?>
-                                                            <option value="<?= htmlspecialchars($wisata) ?>"
-                                                                <?= ($filters['nama_wisata'] == $wisata) ? 'selected' : '' ?>>
-                                                                <?= htmlspecialchars($wisata) ?>
-                                                            </option>
-                                                        <?php endforeach; ?>
-                                                    </select>
-                                                <?php else: ?>
-                                                    <input type="text" class="form-control"
-                                                        value="<?= htmlspecialchars($defaultSite) ?>" readonly>
-                                                    <input type="hidden" name="nama_wisata"
-                                                        value="<?= htmlspecialchars($defaultSite) ?>">
-                                                <?php endif; ?>
+                                                <select name="nama_wisata" class="form-control" required>
+                                                    <option value="">Pilih Tempat Wisata</option>
+                                                    <?php foreach ($wisataList as $wisata): ?>
+                                                        <option value="<?= htmlspecialchars($wisata) ?>"
+                                                            <?= ($filters['nama_wisata'] == $wisata) ? 'selected' : '' ?>>
+                                                            <?= htmlspecialchars($wisata) ?>
+                                                        </option>
+                                                    <?php endforeach; ?>
+                                                </select>
                                             </div>
 
-                                            <?php if ($isAdmin): ?>
-                                                <div class="form-group col-md-3">
-                                                    <label>Tahun awal</label>
-                                                    <select name="start_year" class="form-control" required>
-                                                        <option value="">Pilih Tahun</option>
-                                                        <?php foreach ($tahunList as $tahun): ?>
-                                                            <option value="<?= $tahun ?>"
-                                                                <?= ($filters['start_year'] == $tahun) ? 'selected' : '' ?>>
-                                                                <?= $tahun ?>
-                                                            </option>
-                                                        <?php endforeach; ?>
-                                                    </select>
-                                                </div>
+                                            <div class="form-group col-md-3">
+                                                <label>Tahun Awal</label>
+                                                <select name="start_year" class="form-control" required>
+                                                    <option value="">Pilih Tahun</option>
+                                                    <?php foreach ($tahunList as $tahun): ?>
+                                                        <option value="<?= $tahun ?>"
+                                                            <?= ($filters['start_year'] == $tahun) ? 'selected' : '' ?>>
+                                                            <?= $tahun ?>
+                                                        </option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
 
-                                                <div class="form-group col-md-3">
-                                                    <label>Tahun Akhir</label>
-                                                    <select name="end_year" class="form-control" required>
-                                                        <option value="">Pilih Tahun</option>
-                                                        <?php foreach ($tahunList as $tahun): ?>
-                                                            <option value="<?= $tahun ?>"
-                                                                <?= ($filters['end_year'] == $tahun) ? 'selected' : '' ?>>
-                                                                <?= $tahun ?>
-                                                            </option>
-                                                        <?php endforeach; ?>
-                                                    </select>
-                                                </div>
-                                            <?php else: ?>
-                                                <div class="form-group col-md-3">
-                                                    <label>Year</label>
-                                                    <select name="user_year" class="form-control" required>
-                                                        <option value="">Select Year</option>
-                                                        <?php foreach ($tahunList as $tahun): ?>
-                                                            <option value="<?= $tahun ?>"
-                                                                <?= ($filters['user_year'] == $tahun) ? 'selected' : '' ?>>
-                                                                <?= $tahun ?>
-                                                            </option>
-                                                        <?php endforeach; ?>
-                                                    </select>
-                                                </div>
-                                            <?php endif; ?>
+                                            <div class="form-group col-md-3">
+                                                <label>Tahun Akhir</label>
+                                                <select name="end_year" class="form-control" required>
+                                                    <option value="">Pilih Tahun</option>
+                                                    <?php foreach ($tahunList as $tahun): ?>
+                                                        <option value="<?= $tahun ?>"
+                                                            <?= ($filters['end_year'] == $tahun) ? 'selected' : '' ?>>
+                                                            <?= $tahun ?>
+                                                        </option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
 
                                             <div class="form-group col-md-2">
                                                 <label>&nbsp;</label>
                                                 <button type="submit" class="btn btn-primary w-100">
-                                                    <i class="bi bi-graph-up"></i> Predict
+                                                    <i class="bi bi-graph-up"></i> Prediksi
                                                 </button>
                                             </div>
                                         </div>
@@ -266,7 +225,7 @@ $months = [
                                                 <div class="card-header bg-primary text-white">
                                                     <h4 class="mb-0">
                                                         <i class="bi bi-bar-chart-line"></i>
-                                                        SARIMA Prediction for <?= htmlspecialchars($filters['nama_wisata']) ?> - Year <?= $predYear ?>
+                                                        Prediksi SARIMA untuk <?= htmlspecialchars($filters['nama_wisata']) ?> - Tahun <?= $predYear ?>
                                                     </h4>
                                                 </div>
 
@@ -274,9 +233,9 @@ $months = [
                                                     <table class="table table-bordered">
                                                         <thead class="thead-dark">
                                                             <tr>
-                                                                <th>Month</th>
-                                                                <th>Predicted Visitors</th>
-                                                                <th>Confidence Range</th>
+                                                                <th>Bulan</th>
+                                                                <th>Prediksi Pengunjung</th>
+                                                                <th>Rentang Keyakinan</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -303,16 +262,16 @@ $months = [
                                                 </div>
 
                                                 <div class="model-info mt-4">
-                                                    <h5><i class="bi bi-gear"></i> Model Diagnostics</h5>
+                                                    <h5><i class="bi bi-gear"></i> Diagnostik Model</h5>
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <ul class="list-group">
                                                                 <li class="list-group-item d-flex justify-content-between">
-                                                                    <span>AIC Score:</span>
+                                                                    <span>Skor AIC:</span>
                                                                     <span><?= round($prediction['model_stats']['aic'], 2) ?></span>
                                                                 </li>
                                                                 <li class="list-group-item d-flex justify-content-between">
-                                                                    <span>BIC Score:</span>
+                                                                    <span>Skor BIC:</span>
                                                                     <span><?= round($prediction['model_stats']['bic'], 2) ?></span>
                                                                 </li>
                                                             </ul>
@@ -324,24 +283,24 @@ $months = [
                                                                     <span><?= round($prediction['model_stats']['mae'], 2) ?></span>
                                                                 </li>
                                                                 <li class="list-group-item d-flex justify-content-between">
-                                                                    <span>Stationary:</span>
-                                                                    <span><?= $prediction['model_stats']['is_stationary'] ? 'Yes' : 'No' ?></span>
+                                                                    <span>Stasioner:</span>
+                                                                    <span><?= $prediction['model_stats']['is_stationary'] ? 'Ya' : 'Tidak' ?></span>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                     </div>
 
-                                                    <h5 class="mt-3">Model Parameters</h5>
+                                                    <h5 class="mt-3">Parameter Model</h5>
                                                     <pre><?= json_encode($prediction['model_stats'], JSON_PRETTY_PRINT) ?></pre>
                                                 </div>
                                             </div>
                                         <?php else: ?>
                                             <div class="alert alert-danger mt-4">
-                                                <h4 class="alert-heading"><i class="bi bi-exclamation-triangle"></i> Prediction Failed</h4>
+                                                <h4 class="alert-heading"><i class="bi bi-exclamation-triangle"></i> Prediksi Gagal</h4>
                                                 <p><?= htmlspecialchars($prediction['message']) ?></p>
                                                 <?php if (isset($prediction['trace'])): ?>
                                                     <div class="error-trace mt-3">
-                                                        <h6>Technical Details:</h6>
+                                                        <h6>Detail Teknis:</h6>
                                                         <pre><?= htmlspecialchars($prediction['trace']) ?></pre>
                                                     </div>
                                                 <?php endif; ?>
@@ -349,8 +308,8 @@ $months = [
                                         <?php endif; ?>
                                     <?php else: ?>
                                         <div class="alert alert-info mt-4">
-                                            <h4 class="alert-heading"><i class="bi bi-info-circle"></i> Noted</h4>
-                                            <p>Silakan pilih tempat wisata dan tanggal untuk melakukan prediksi pengunjung.</p>
+                                            <h4 class="alert-heading"><i class="bi bi-info-circle"></i> Catatan</h4>
+                                            <p>Silakan pilih tempat wisata dan rentang tahun untuk melakukan prediksi pengunjung.</p>
                                         </div>
                                     <?php endif; ?>
                                 </div>
@@ -377,7 +336,7 @@ $months = [
                     data: {
                         labels: labels,
                         datasets: [{
-                                label: 'Predicted Visitors',
+                                label: 'Prediksi Pengunjung',
                                 data: data,
                                 borderColor: 'rgba(54, 162, 235, 1)',
                                 backgroundColor: 'rgba(54, 162, 235, 0.1)',
@@ -386,7 +345,7 @@ $months = [
                                 fill: true
                             },
                             {
-                                label: 'Confidence Interval (Upper)',
+                                label: 'Rentang Keyakinan (Atas)',
                                 data: ci.map(item => item[1]),
                                 borderColor: 'rgba(255, 99, 132, 0.5)',
                                 backgroundColor: 'rgba(255, 99, 132, 0.1)',
@@ -394,7 +353,7 @@ $months = [
                                 borderDash: [5, 5]
                             },
                             {
-                                label: 'Confidence Interval (Lower)',
+                                label: 'Rentang Keyakinan (Bawah)',
                                 data: ci.map(item => item[0]),
                                 borderColor: 'rgba(75, 192, 192, 0.5)',
                                 backgroundColor: 'rgba(75, 192, 192, 0.1)',
@@ -411,7 +370,7 @@ $months = [
                                 beginAtZero: true,
                                 title: {
                                     display: true,
-                                    text: 'Number of Visitors'
+                                    text: 'Jumlah Pengunjung'
                                 },
                                 ticks: {
                                     callback: value => value.toLocaleString()
@@ -420,7 +379,7 @@ $months = [
                             x: {
                                 title: {
                                     display: true,
-                                    text: 'Month'
+                                    text: 'Bulan'
                                 }
                             }
                         },

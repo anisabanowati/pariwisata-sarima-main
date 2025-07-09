@@ -1,620 +1,457 @@
-<?php 
+<?php
 include('includes/checklogin.php');
 check_login();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php @include("includes/head.php");?>
+<?php @include("includes/head.php"); ?>
+
+<head>
+  <title>Tourism Dashboard - Bantul</title>
+  <style>
+    .dashboard-card {
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+      margin-bottom: 20px;
+      border-left: 4px solid #3c8dbc;
+    }
+
+    .dashboard-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      opacity: 0.7;
+    }
+
+    .card-value {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .card-title {
+      color: #6c757d;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .chart-container {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .welcome-banner {
+      background: linear-gradient(135deg, #3c8dbc 0%, #367fa9 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .recent-activity {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .recent-activity li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .recent-activity li:last-child {
+      border-bottom: none;
+    }
+
+    .activity-time {
+      font-size: 0.8rem;
+      color: #6c757d;
+    }
+
+    .top-destinations img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+
+    .destination-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+    }
+
+    .destination-info {
+      flex-grow: 1;
+    }
+
+    .destination-visitors {
+      font-weight: bold;
+      color: #3c8dbc;
+    }
+
+    /* New styles for simplified trend table */
+    .trend-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    .trend-table th,
+    .trend-table td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    .trend-table th {
+      background-color: #f8f9fa;
+      font-weight: 600;
+      color: #495057;
+    }
+
+    .trend-table tr:hover {
+      background-color: #f8f9fa;
+    }
+
+    .trend-change {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .trend-up {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .trend-down {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+
+    .trend-neutral {
+      background-color: #e2e3e5;
+      color: #383d41;
+    }
+
+    .visitor-count {
+      font-weight: 600;
+    }
+
+    .trend-arrow {
+      margin-right: 3px;
+    }
+  </style>
+</head>
+
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <?php @include("includes/header.php");?>
+    <?php @include("includes/header.php"); ?>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_sidebar.html -->
-      <?php @include("includes/sidebar.php");?>
-      <h1>SELAMAT DATANG</h1>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-        
-        <!-- partial -->
+      <?php @include("includes/sidebar.php"); ?>
+
+      <!-- Main Content -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <!-- Welcome Banner -->
+          <div class="welcome-banner">
+            <div class="row">
+              <div class="col-md-8">
+                <h3>Selamat Datang di Sistem Informasi Pariwisata Bantul</h3>
+                <p class="mb-0">Pantau dan kelola data pariwisata Kabupaten Bantul secara real-time</p>
+              </div>
+              <div class="col-md-4 text-right">
+                <i class="fas fa-map-marked-alt fa-3x" style="opacity: 0.3;"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Summary Cards -->
+          <div class="row">
+            <div class="col-md-3">
+              <div class="dashboard-card card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-8">
+                      <h6 class="card-title">Total Pengunjung</h6>
+                      <div class="card-value">
+                        <?php
+                        // Query to get total visitors
+                        $total_visitors = 0;
+                        $sql = "SELECT SUM(JumlahPengunjung) as total FROM tourism_data";
+                        $query = $dbh->prepare($sql);
+                        $query->execute();
+                        $result = $query->fetch(PDO::FETCH_OBJ);
+                        if ($result) {
+                          $total_visitors = number_format($result->total, 0, ',', '.');
+                        }
+                        echo $total_visitors;
+                        ?>
+                      </div>
+                    </div>
+                    <div class="col-4 text-right">
+                      <i class="fas fa-users card-icon text-primary"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="dashboard-card card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-8">
+                      <h6 class="card-title">Total Pendapatan</h6>
+                      <div class="card-value">
+                        <?php
+                        // Query to get total income
+                        $total_income = 0;
+                        $sql = "SELECT SUM(Pendapatan) as total FROM tourism_data";
+                        $query = $dbh->prepare($sql);
+                        $query->execute();
+                        $result = $query->fetch(PDO::FETCH_OBJ);
+                        if ($result) {
+                          $total_income = 'Rp ' . number_format($result->total, 0, ',', '.');
+                        }
+                        echo $total_income;
+                        ?>
+                      </div>
+                    </div>
+                    <div class="col-4 text-right">
+                      <i class="fas fa-money-bill-wave card-icon text-success"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="dashboard-card card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-8">
+                      <h6 class="card-title">Destinasi Wisata</h6>
+                      <div class="card-value">
+                        <?php
+                        // Query to count distinct destinations
+                        $destinations_count = 0;
+                        $sql = "SELECT COUNT(DISTINCT NamaWisata) as total FROM tourism_data";
+                        $query = $dbh->prepare($sql);
+                        $query->execute();
+                        $result = $query->fetch(PDO::FETCH_OBJ);
+                        if ($result) {
+                          $destinations_count = $result->total;
+                        }
+                        echo $destinations_count;
+                        ?>
+                      </div>
+                    </div>
+                    <div class="col-4 text-right">
+                      <i class="fas fa-map-marker-alt card-icon text-info"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="dashboard-card card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-8">
+                      <h6 class="card-title">Data Bulanan</h6>
+                      <div class="card-value">
+                        <?php
+                        // Query to count monthly records
+                        $monthly_data = 0;
+                        $sql = "SELECT COUNT(*) as total FROM tourism_data WHERE RentangWaktu = 'Bulanan'";
+                        $query = $dbh->prepare($sql);
+                        $query->execute();
+                        $result = $query->fetch(PDO::FETCH_OBJ);
+                        if ($result) {
+                          $monthly_data = $result->total;
+                        }
+                        echo $monthly_data;
+                        ?>
+                      </div>
+                    </div>
+                    <div class="col-4 text-right">
+                      <i class="fas fa-calendar-alt card-icon text-warning"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Simplified Trend Table -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="chart-container">
+                <h5 class="mb-4">Trend Kunjungan Tahunan</h5>
+                <p style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">
+                  Data ini menunjukkan total pengunjung per tahun berdasarkan <code>SUM(JumlahPengunjung)</code> dari tabel <strong>tourism_data</strong>.
+                  Perubahan dihitung berdasarkan selisih dengan tahun sebelumnya menggunakan fungsi SQL <code>LAG()</code>.
+                  <span style="color: #155724; font-weight: bold;">Hijau (↑)</span> menandakan peningkatan,
+                  <span style="color: #721c24; font-weight: bold;">Merah (↓)</span> menunjukkan penurunan,
+                  dan <span style="color: #383d41; font-weight: bold;">Abu-abu (=)</span> berarti tidak ada perubahan.
+                </p>
+
+                <div class="table-responsive">
+                  <table class="trend-table">
+                    <thead>
+                      <tr>
+                        <th>Tahun</th>
+                        <th>Total Pengunjung</th>
+                        <th>Perubahan</th>
+                        <th>Persentase</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      // Query to get yearly visitors data with percentage change
+                      $sql = "SELECT 
+                                YEAR(Tanggal) as year, 
+                                SUM(JumlahPengunjung) as total,
+                                LAG(SUM(JumlahPengunjung)) OVER (ORDER BY YEAR(Tanggal)) as prev_total
+                              FROM tourism_data 
+                              GROUP BY YEAR(Tanggal) 
+                              ORDER BY YEAR(Tanggal) DESC";
+                      $query = $dbh->prepare($sql);
+                      $query->execute();
+                      $yearly_data = $query->fetchAll(PDO::FETCH_OBJ);
+
+                      foreach ($yearly_data as $index => $data) {
+                        $year = $data->year;
+                        $total = $data->total;
+                        $prev_total = $data->prev_total;
+
+                        // Calculate percentage change
+                        $change = 0;
+                        $percentage = 0;
+                        $trend_class = 'trend-neutral';
+                        $trend_icon = '';
+
+                        if ($prev_total && $prev_total > 0) {
+                          $change = $total - $prev_total;
+                          $percentage = ($change / $prev_total) * 100;
+
+                          if ($change > 0) {
+                            $trend_class = 'trend-up';
+                            $trend_icon = '<i class="fas fa-arrow-up trend-arrow"></i>';
+                          } elseif ($change < 0) {
+                            $trend_class = 'trend-down';
+                            $trend_icon = '<i class="fas fa-arrow-down trend-arrow"></i>';
+                          }
+                        }
+
+                        echo '<tr>
+                                <td>' . $year . '</td>
+                                <td class="visitor-count">' . number_format($total, 0, ',', '.') . '</td>
+                                <td>
+                                  <span class="trend-change ' . $trend_class . '">
+                                    ' . $trend_icon . number_format(abs($change), 0, ',', '.') . '
+                                  </span>
+                                </td>
+                                <td>
+                                  <span class="trend-change ' . $trend_class . '">
+                                    ' . $trend_icon . abs(round($percentage, 1)) . '%
+                                  </span>
+                                </td>
+                              </tr>';
+                      }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Second Row -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="chart-container">
+                <h5 class="mb-4">Top 5 Destinasi Wisata</h5>
+                <div class="top-destinations">
+                  <?php
+                  // Query to get top 5 destinations by visitors
+                  $sql = "SELECT NamaWisata, SUM(JumlahPengunjung) as total 
+                          FROM tourism_data 
+                          GROUP BY NamaWisata 
+                          ORDER BY total DESC 
+                          LIMIT 5";
+                  $query = $dbh->prepare($sql);
+                  $query->execute();
+                  $destinations = $query->fetchAll(PDO::FETCH_OBJ);
+
+                  foreach ($destinations as $destination) {
+                    $image = strtolower(str_replace(' ', '-', $destination->NamaWisata)) . '.jpg';
+                    echo '<div class="destination-item">
+                            <div class="destination-info">
+                                <h6>' . $destination->NamaWisata . '</h6>
+                                <small class="text-muted">Kabupaten Bantul</small>
+                            </div>
+                            <div class="destination-visitors">' . number_format($destination->total, 0, ',', '.') . '</div>
+                          </div>';
+                  }
+                  ?>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="chart-container">
+                <h5 class="mb-4">Aktivitas Terkini</h5>
+                <ul class="recent-activity">
+                  <?php
+                  // Query to get recent activities
+                  $sql = "SELECT NamaWisata, JumlahPengunjung, Tanggal 
+                          FROM tourism_data 
+                          ORDER BY Tanggal DESC 
+                          LIMIT 5";
+                  $query = $dbh->prepare($sql);
+                  $query->execute();
+                  $activities = $query->fetchAll(PDO::FETCH_OBJ);
+
+                  foreach ($activities as $activity) {
+                    $date = date('d M Y', strtotime($activity->Tanggal));
+                    echo '<li>
+                            <div class="d-flex justify-content-between">
+                                <strong>' . $activity->NamaWisata . '</strong>
+                                <span class="destination-visitors">' . number_format($activity->JumlahPengunjung, 0, ',', '.') . '</span>
+                            </div>
+                            <div class="activity-time">' . $date . '</div>
+                          </li>';
+                  }
+                  ?>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <?php @include("includes/footer.php"); ?>
       </div>
-      <!-- main-panel ends -->
     </div>
-    <!-- page-body-wrapper ends -->
   </div>
-  <!-- container-scroller -->
-  <?php @include("includes/foot.php");?>
-  <script >
-    $(function () {
-    /* ChartJS
-     * -------
-     * Here we will create a few charts using ChartJS
-     */
 
-    //--------------
-    //- AREA CHART -
-    //--------------
-
-    // Get context with jQuery - using jQuery's .get() method.
-    var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
-
-    var areaChartData = {
-      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [
-      {
-        label               : 'Digital Goods',
-        backgroundColor     : 'rgba(60,141,188,0.9)',
-        borderColor         : 'rgba(60,141,188,0.8)',
-        pointRadius          : false,
-        pointColor          : '#3b8bba',
-        pointStrokeColor    : 'rgba(60,141,188,1)',
-        pointHighlightFill  : '#fff',
-        pointHighlightStroke: 'rgba(60,141,188,1)',
-        data                : [28, 48, 40, 19, 86, 27, 90]
-      },
-      {
-        label               : 'Electronics',
-        backgroundColor     : 'rgba(200, 150, 30, 1)',
-        borderColor         : 'rgba(210, 214, 222, 1)',
-        pointRadius         : false,
-        pointColor          : 'rgba(210, 214, 222, 1)',
-        pointStrokeColor    : '#c1c7d1',
-        pointHighlightFill  : '#fff',
-        pointHighlightStroke: 'rgba(220,220,220,1)',
-        data                : [66, 59, 80, 81, 56, 55, 41]
-      },
-      ]
-    }
-
-    var areaChartOptions = {
-      maintainAspectRatio : false,
-      responsive : true,
-      legend: {
-        display: false
-      },
-      scales: {
-        xAxes: [{
-          gridLines : {
-            display : false,
-          }
-        }],
-        yAxes: [{
-          gridLines : {
-            display : false,
-          }
-        }]
-      }
-    }
-
-    // This will get the first returned node in the jQuery collection.
-    var areaChart       = new Chart(areaChartCanvas, { 
-      type: 'bar',
-      data: areaChartData, 
-      options: areaChartOptions
-    })
-
-    //-------------
-    //- LINE CHART -
-    //--------------
-    var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
-    var lineChartOptions = jQuery.extend(true, {}, areaChartOptions)
-    var lineChartData = jQuery.extend(true, {}, areaChartData)
-    lineChartData.datasets[0].fill = false;
-    lineChartData.datasets[1].fill = false;
-    lineChartOptions.datasetFill = false
-
-    var lineChart = new Chart(lineChartCanvas, { 
-      type: 'line',
-      data: lineChartData, 
-      options: lineChartOptions
-    })
-
-    //-------------
-    //- DONUT CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
-    var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
-    
-    var donutData        = {
-      labels: [
-      'Chrome', 
-      'IE',
-      'FireFox', 
-      'Safari', 
-      'Opera', 
-      'Navigator', 
-      ],
-      datasets: [
-      {
-        data: [700,500,400,600,300,100],
-        backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-      }
-      ]
-    }
-    var donutOptions     = {
-      maintainAspectRatio : false,
-      responsive : true,
-    }
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
-    var donutChart = new Chart(donutChartCanvas, {
-      type: 'doughnut',
-      data: donutData,
-      options: donutOptions      
-    })
-
-    //-------------
-    //- PIE CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
-    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-    var pieData        = donutData;
-    var pieOptions     = {
-      maintainAspectRatio : false,
-      responsive : true,
-    }
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
-    var pieChart = new Chart(pieChartCanvas, {
-      type: 'pie',
-      data: pieData,
-      options: pieOptions      
-    })
-
-    //-------------
-    //- BAR CHART -
-    //-------------
-    var barChartCanvas = $('#barChart').get(0).getContext('2d')
-    var barChartData = jQuery.extend(true, {}, areaChartData)
-    var temp0 = areaChartData.datasets[0]
-    var temp1 = areaChartData.datasets[1]
-    barChartData.datasets[0] = temp1
-    barChartData.datasets[1] = temp0
-
-    var barChartOptions = {
-      responsive              : true,
-      maintainAspectRatio     : false,
-      datasetFill             : false
-    }
-
-    var barChart = new Chart(barChartCanvas, {
-      type: 'bar', 
-      data: barChartData,
-      options: barChartOptions
-    })
-
-    //---------------------
-    //- STACKED BAR CHART -
-    //---------------------
-    var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
-    var stackedBarChartData = jQuery.extend(true, {}, barChartData)
-
-    var stackedBarChartOptions = {
-      responsive              : true,
-      maintainAspectRatio     : false,
-      scales: {
-        xAxes: [{
-          stacked: true,
-        }],
-        yAxes: [{
-          stacked: true
-        }]
-      }
-    }
-
-    var stackedBarChart = new Chart(stackedBarChartCanvas, {
-      type: 'bar', 
-      data: stackedBarChartData,
-      options: stackedBarChartOptions
-    })
-  })
-// $(document).ready(function () {
-//   showGraph();
-// });
-
-
-// function showGraph()
-// {
-//   {
-//     $.post("data.php",
-//       function (data)
-//       {
-//         console.log(data);
-//         var name = [];
-//         var marks = [];
-
-//         for (var i in data) {
-//           name.push(data[i].ServiceName);
-//           marks.push(data[i].population);
-//         }
-//         var barChartOptions = {
-//           responsive              : true,
-//           maintainAspectRatio     : false,
-//           datasetFill             : false,
-//           scales:{
-//             yAxes:[{
-//                 ticks:{
-//                     beginAtZero: true
-//                 }
-//             }]
-//           }
-//         }
-
-//           var chartdata = {
-//             labels: name,
-//             datasets: [
-//             {
-//               label: 'Student Marks',
-//               backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-//               borderColor: '#46d5f1',
-//               hoverBackgroundColor: '#CCCCCC',
-//               hoverBorderColor: '#666666',
-//               data: marks
-//             }
-//             ]
-//           };
-
-
-//           var graphTarget = $("#graphCanvas");
-
-//           var barGraph = new Chart(graphTarget, {
-//             type: 'bar',
-//             data: chartdata,
-//             options: barChartOptions
-//           });
-//         });
-//   }
-// }
-
-
-$(document).ready(function(){
-  $.ajax({
-    url: "data.php",
-    method: "GET",
-    success: function(data){
-      console.log(data);
-      var name = [];
-      var marks = [];
-
-      for (var i in data){
-        name.push(data[i].Sector);
-
-        marks.push(data[i].total);
-      }
-      var chartdata = {
-        labels: name,
-        datasets: [{
-          label: 'student marks',
-          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-          borderColor: 'rgba(134, 159, 152, 1)',
-          hoverBackgroundColor: 'rgba(230, 236, 235, 0.75)',
-          hoverBorderColor: 'rgba(230, 236, 235, 0.75)',
-          data: marks
-
-        }]
-      };
-      var graphTarget = $("#graphCanvas");
-      var barGraph = new Chart(graphTarget, {
-        type: 'bar',
-        data: chartdata,
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
-            }]
-          }
-        }
-      });
-    },
-    error: function(data) {
-      console.log(data);
-    }
-
-  });
-});
-
-$(document).ready(function () {
-  showGraph2();
-});
-function showGraph2()
-{
-  {
-    $.post("data.php",
-      function (data)
-      {
-        console.log(data);
-        var name = [];
-        var marks = [];
-
-        for (var i in data) {
-          name.push(data[i].Sector);
-          marks.push(data[i].total);
-        }
-
-        var chartdata = {
-          labels: name,
-          datasets: [
-          {
-            label: 'Student Marks',
-            backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-            // borderColor: '#46d5f1',
-            hoverBackgroundColor: '#CCCCCC',
-            hoverBorderColor: '#666666',
-            data: marks
-          }
-          ]
-        };
-
-        var graphTarget = $("#graphCanvas2");
-
-        var pieChart = new Chart(graphTarget, {
-          type: 'pie',
-          data: chartdata
-        });
-      });
-  }
-}
-
-</script>
-
-<script >
-  $(document).ready(function(){
-    $.ajax({
-      url: "data.php",
-      method: "GET",
-      success: function(data){
-        console.log(data);
-        var name = [];
-        var marks = [];
-
-        for (var i in data){
-          name.push(data[i].Sector);
-
-          marks.push(data[i].total);
-        }
-        var chartdata = {
-          labels: name,
-          datasets: [{
-            label: 'student marks',
-            backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-            borderColor: 'rgba(134, 159, 152, 1)',
-            hoverBackgroundColor: 'rgba(230, 236, 235, 0.75)',
-            hoverBorderColor: 'rgba(230, 236, 235, 0.75)',
-            data: marks
-
-          }]
-        };
-        var graphTarget = $("#graphCanvas");
-        var barGraph = new Chart(graphTarget, {
-          type: 'bar',
-          data: chartdata,
-          options: {
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero: true
-                }
-              }]
-            }
-          }
-        });
-      },
-      error: function(data) {
-        console.log(data);
-      }
-
-    });
-  });
-
-
-
-  $(document).ready(function(){
-    $.ajax({
-      url: "data.php",
-      method: "GET",
-      success: function(data){
-        console.log(data);
-        var name = [];
-        var marks = [];
-
-        for (var i in data){
-          name.push(data[i].Sector);
-
-          marks.push(data[i].total);
-        }
-        var chartdata = {
-          labels: name,
-          datasets: [{
-            label: 'No of Bids',
-            backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-            borderColor: 'rgba(134, 159, 152, 1)',
-            hoverBackgroundColor: 'rgba(230, 236, 235, 0.75)',
-            hoverBorderColor: 'rgba(230, 236, 235, 0.75)',
-            data: marks
-
-          }]
-        };
-        var graphTarget = $("#graphCanvas3");
-        var barGraph = new Chart(graphTarget, {
-          type: 'bar',
-          data: chartdata,
-          options: {
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero: true
-                }
-              }]
-            }
-          }
-        });
-      },
-      error: function(data) {
-        console.log(data);
-      }
-
-    });
-  });
-
-
-
-
-
-  $(document).ready(function(){
-    $.ajax({
-      url: "data1.php",
-      method: "GET",
-      success: function(data1){
-        console.log(data1);
-        var name = [];
-        var marks = [];
-
-        for (var i in data1){
-          name.push(data1[i].Status);
-
-          marks.push(data1[i].total);
-        }
-        var chartdata = {
-          labels: name,
-          datasets: [{
-            label: 'No of bids',
-            backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-            borderColor: 'rgba(134, 159, 152, 1)',
-            hoverBackgroundColor: 'rgba(230, 236, 235, 0.75)',
-            hoverBorderColor: 'rgba(230, 236, 235, 0.75)',
-            data: marks
-
-          }]
-        };
-        var graphTarget = $("#graphCanvas4");
-        var barGraph = new Chart(graphTarget, {
-          type: 'bar',
-          data: chartdata,
-          options: {
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero: true
-                }
-              }]
-            }
-          }
-        });
-      },
-      error: function(data) {
-        console.log(data);
-      }
-
-    });
-  });
-
-
-
-
-  $(document).ready(function(){
-    $.ajax({
-      url: "data2.php",
-      method: "GET",
-      success: function(data2){
-        console.log(data2);
-        var name = [];
-        var marks = [];
-
-        for (var i in data2){
-          name.push(data2[i].Source);
-
-          marks.push(data2[i].total);
-        }
-        var chartdata = {
-          labels: name,
-          datasets: [{
-            label: 'No of bids',
-            backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-            borderColor: 'rgba(134, 159, 152, 1)',
-            hoverBackgroundColor: 'rgba(230, 236, 235, 0.75)',
-            hoverBorderColor: 'rgba(230, 236, 235, 0.75)',
-            data: marks
-
-          }]
-        };
-        var graphTarget = $("#graphCanvas5");
-        var barGraph = new Chart(graphTarget, {
-          type: 'bar',
-          data: chartdata,
-          options: {
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero: true
-                }
-              }]
-            }
-          }
-        });
-      },
-      error: function(data) {
-        console.log(data);
-      }
-
-    });
-  });
-
-
-
-  $(document).ready(function(){
-    $.ajax({
-      url: "data3.php",
-      method: "GET",
-      success: function(data3){
-        console.log(data3);
-        var name = [];
-        var marks = [];
-
-        for (var i in data3){
-          name.push(data3[i].Newspaper);
-
-          marks.push(data3[i].total);
-        }
-        var chartdata = {
-          labels: name,
-          datasets: [{
-            label: 'No of Bids',
-            backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-            borderColor: 'rgba(134, 159, 152, 1)',
-            hoverBackgroundColor: 'rgba(230, 236, 235, 0.75)',
-            hoverBorderColor: 'rgba(230, 236, 235, 0.75)',
-            data: marks
-
-          }]
-        };
-        var graphTarget = $("#graphCanvas6");
-        var barGraph = new Chart(graphTarget, {
-          type: 'bar',
-          data: chartdata,
-          options: {
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero: true
-                }
-              }]
-            }
-          }
-        });
-      },
-      error: function(data) {
-        console.log(data);
-      }
-
-    });
-  });
-
-</script>
+  <?php @include("includes/foot.php"); ?>
 </body>
+
 </html>
-
-

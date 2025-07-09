@@ -152,7 +152,6 @@ foreach ($stmtChart->fetchAll(PDO::FETCH_ASSOC) as $r)
                         <th>Nama Wisata</th>
                         <th>Jumlah Pengunjung</th>
                         <th>Pendapatan</th>
-                        <th>Sewa Gedung</th>
                         <th>Tanggal</th>
                         <th class="text-center">Aksi</th>
                       </tr>
@@ -165,7 +164,6 @@ foreach ($stmtChart->fetchAll(PDO::FETCH_ASSOC) as $r)
                           <td><?= htmlentities($row->NamaWisata) ?></td>
                           <td class="text-center"><?= htmlentities($row->JumlahPengunjung) ?></td>
                           <td class="text-right">Rp <?= number_format($row->Pendapatan, 0, ',', '.') ?></td>
-                          <td class="text-right">Rp <?= number_format($row->SewaGedung, 0, ',', '.') ?></td>
                           <td class="text-center"><?= date('d-m-Y', strtotime($row->Tanggal)) ?></td>
                           <td class="text-center">
                             <!-- Aksi (detail / edit / delete) -->
@@ -192,7 +190,6 @@ foreach ($stmtChart->fetchAll(PDO::FETCH_ASSOC) as $r)
                         <th>Nama Wisata</th>
                         <th>Jumlah Pengunjung</th>
                         <th>Pendapatan</th>
-                        <th>Sewa Gedung</th>
                         <th>Tanggal</th>
                       </tr>
                     </thead>
@@ -204,7 +201,6 @@ foreach ($stmtChart->fetchAll(PDO::FETCH_ASSOC) as $r)
                           <td><?= htmlentities($row->NamaWisata) ?></td>
                           <td><?= htmlentities($row->JumlahPengunjung) ?></td>
                           <td>Rp <?= number_format($row->Pendapatan, 0, ',', '.') ?></td>
-                          <td>Rp <?= number_format($row->SewaGedung, 0, ',', '.') ?></td>
                           <td><?= date('d-m-Y', strtotime($row->Tanggal)) ?></td>
                         </tr>
                       <?php endforeach; ?>
@@ -257,6 +253,7 @@ foreach ($stmtChart->fetchAll(PDO::FETCH_ASSOC) as $r)
     const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
     const dataFromPHP = <?= json_encode($chartData) ?>;
     const dataValues = monthLabels.map((_, i) => dataFromPHP[i + 1] ?? 0);
+
     new Chart(document.getElementById('chartVisitor'), {
       type: 'line',
       data: {
@@ -264,18 +261,43 @@ foreach ($stmtChart->fetchAll(PDO::FETCH_ASSOC) as $r)
         datasets: [{
           label: 'Jumlah Pengunjung',
           data: dataValues,
-          borderColor: 'rgba(54,162,235,1)',
-          backgroundColor: 'rgba(54,162,235,0.2)',
-          borderWidth: 2,
-          tension: 0.3,
-          fill: true
+          borderColor: 'rgba(54, 162, 235, 1)', // Warna biru untuk garis
+          backgroundColor: 'rgba(0, 0, 0, 0)', // Transparan (tidak ada warna isian)
+          borderWidth: 3, // Lebih tebal
+          tension: 0, // Garis lurus tanpa kurva
+          fill: false, // Tidak mengisi area bawah garis
+          pointBackgroundColor: 'rgba(54, 162, 235, 1)', // Warna titik
+          pointRadius: 5, // Ukuran titik
+          pointHoverRadius: 7 // Ukuran titik saat hover
         }]
       },
       options: {
         responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: {
+              usePointStyle: true,
+              padding: 20
+            }
+          }
+        },
         scales: {
           y: {
-            beginAtZero: true
+            beginAtZero: true,
+            grid: {
+              drawOnChartArea: false // Hilangkan grid y
+            }
+          },
+          x: {
+            grid: {
+              display: false // Hilangkan grid x
+            }
+          }
+        },
+        elements: {
+          line: {
+            cubicInterpolationMode: 'monotone' // Garis lebih tajam
           }
         }
       }

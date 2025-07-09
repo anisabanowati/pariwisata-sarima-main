@@ -151,6 +151,11 @@ check_login();
     .trend-arrow {
       margin-right: 3px;
     }
+
+    /* Animation for counting numbers */
+    .count-up {
+      display: inline-block;
+    }
   </style>
 </head>
 
@@ -196,9 +201,11 @@ check_login();
                         $query->execute();
                         $result = $query->fetch(PDO::FETCH_OBJ);
                         if ($result) {
-                          $total_visitors = number_format($result->total, 0, ',', '.');
+                          $total_visitors = $result->total;
+                          echo '<span class="count-up" data-target="' . $total_visitors . '">0</span>';
+                        } else {
+                          echo '0';
                         }
-                        echo $total_visitors;
                         ?>
                       </div>
                     </div>
@@ -214,7 +221,7 @@ check_login();
               <div class="dashboard-card card">
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-8">
+                    <div class="col-12">
                       <h6 class="card-title">Total Pendapatan</h6>
                       <div class="card-value">
                         <?php
@@ -225,14 +232,13 @@ check_login();
                         $query->execute();
                         $result = $query->fetch(PDO::FETCH_OBJ);
                         if ($result) {
-                          $total_income = 'Rp ' . number_format($result->total, 0, ',', '.');
+                          $total_income = $result->total;
+                          echo 'Rp <span class="count-up" data-target="' . $total_income . '">0</span>';
+                        } else {
+                          echo 'Rp 0';
                         }
-                        echo $total_income;
                         ?>
                       </div>
-                    </div>
-                    <div class="col-4 text-right">
-                      <i class="fas fa-money-bill-wave card-icon text-success"></i>
                     </div>
                   </div>
                 </div>
@@ -255,8 +261,10 @@ check_login();
                         $result = $query->fetch(PDO::FETCH_OBJ);
                         if ($result) {
                           $destinations_count = $result->total;
+                          echo '<span class="count-up" data-target="' . $destinations_count . '">0</span>';
+                        } else {
+                          echo '0';
                         }
-                        echo $destinations_count;
                         ?>
                       </div>
                     </div>
@@ -284,8 +292,10 @@ check_login();
                         $result = $query->fetch(PDO::FETCH_OBJ);
                         if ($result) {
                           $monthly_data = $result->total;
+                          echo '<span class="count-up" data-target="' . $monthly_data . '">0</span>';
+                        } else {
+                          echo '0';
                         }
-                        echo $monthly_data;
                         ?>
                       </div>
                     </div>
@@ -361,15 +371,15 @@ check_login();
 
                         echo '<tr>
                                 <td>' . $year . '</td>
-                                <td class="visitor-count">' . number_format($total, 0, ',', '.') . '</td>
+                                <td class="visitor-count"><span class="count-up" data-target="' . $total . '">0</span></td>
                                 <td>
                                   <span class="trend-change ' . $trend_class . '">
-                                    ' . $trend_icon . number_format(abs($change), 0, ',', '.') . '
+                                    ' . $trend_icon . '<span class="count-up" data-target="' . abs($change) . '">0</span>
                                   </span>
                                 </td>
                                 <td>
                                   <span class="trend-change ' . $trend_class . '">
-                                    ' . $trend_icon . abs(round($percentage, 1)) . '%
+                                    ' . $trend_icon . '<span class="count-up" data-target="' . abs(round($percentage, 1)) * 10 . '">0</span>%
                                   </span>
                                 </td>
                               </tr>';
@@ -406,7 +416,7 @@ check_login();
                                 <h6>' . $destination->NamaWisata . '</h6>
                                 <small class="text-muted">Kabupaten Bantul</small>
                             </div>
-                            <div class="destination-visitors">' . number_format($destination->total, 0, ',', '.') . '</div>
+                            <div class="destination-visitors"><span class="count-up" data-target="' . $destination->total . '">0</span></div>
                           </div>';
                   }
                   ?>
@@ -433,7 +443,7 @@ check_login();
                     echo '<li>
                             <div class="d-flex justify-content-between">
                                 <strong>' . $activity->NamaWisata . '</strong>
-                                <span class="destination-visitors">' . number_format($activity->JumlahPengunjung, 0, ',', '.') . '</span>
+                                <span class="destination-visitors"><span class="count-up" data-target="' . $activity->JumlahPengunjung . '">0</span></span>
                             </div>
                             <div class="activity-time">' . $date . '</div>
                           </li>';
@@ -452,6 +462,44 @@ check_login();
   </div>
 
   <?php @include("includes/foot.php"); ?>
+
+  <script>
+    // CountUp Animation Function
+    function animateCountUp() {
+      const countUpElements = document.querySelectorAll('.count-up');
+
+      countUpElements.forEach(element => {
+        const target = parseInt(element.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const start = 0;
+        const increment = target / (duration / 16); // 60fps
+
+        let current = start;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            clearInterval(timer);
+            current = target;
+          }
+
+          // Format number with thousand separators
+          if (element.parentElement.textContent.includes('Rp')) {
+            // For currency
+            element.textContent = Math.floor(current).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+          } else if (element.parentElement.classList.contains('trend-change') && element.textContent.includes('%')) {
+            // For percentages (divided by 10 because we multiplied by 10 earlier)
+            element.textContent = (Math.floor(current) / 10).toFixed(1);
+          } else {
+            // For regular numbers
+            element.textContent = Math.floor(current).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+          }
+        }, 16);
+      });
+    }
+
+    // Initialize animation when page loads
+    document.addEventListener('DOMContentLoaded', animateCountUp);
+  </script>
 </body>
 
 </html>

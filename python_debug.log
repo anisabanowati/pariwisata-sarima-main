@@ -1,0 +1,345 @@
+Command: python3 "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "{ data :[{ tahun :2022, bulan :1, total :337},{ tahun :2022, bulan :2, total :268},{ tahun :2022, bulan :3, total :363},{ tahun :2022, bulan :4, total :119},{ tahun :2022, bulan :5, total :425},{ tahun :2022, bulan :6, total :198},{ tahun :2022, bulan :7, total :220},{ tahun :2022, bulan :8, total :218},{ tahun :2022, bulan :9, total :188},{ tahun :2022, bulan :10, total :196},{ tahun :2022, bulan :11, total :350},{ tahun :2022, bulan :12, total :323},{ tahun :2023, bulan :1, total :1657},{ tahun :2023, bulan :2, total :251},{ tahun :2023, bulan :3, total :282},{ tahun :2023, bulan :4, total :365},{ tahun :2023, bulan :5, total :344},{ tahun :2023, bulan :6, total :396},{ tahun :2023, bulan :7, total :348},{ tahun :2023, bulan :8, total :323},{ tahun :2023, bulan :9, total :310},{ tahun :2023, bulan :10, total :340},{ tahun :2023, bulan :11, total :311},{ tahun :2023, bulan :12, total :290}], nama_wisata : Kawasan Goa Cerme , periode_prediksi :12}" 2>&1
+Output: Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.
+
+Command: python3 "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "{ data :[{ tahun :2022, bulan :1, total :337},{ tahun :2022, bulan :2, total :268},{ tahun :2022, bulan :3, total :363},{ tahun :2022, bulan :4, total :119},{ tahun :2022, bulan :5, total :425},{ tahun :2022, bulan :6, total :198},{ tahun :2022, bulan :7, total :220},{ tahun :2022, bulan :8, total :218},{ tahun :2022, bulan :9, total :188},{ tahun :2022, bulan :10, total :196},{ tahun :2022, bulan :11, total :350},{ tahun :2022, bulan :12, total :323},{ tahun :2023, bulan :1, total :1657},{ tahun :2023, bulan :2, total :251},{ tahun :2023, bulan :3, total :282},{ tahun :2023, bulan :4, total :365},{ tahun :2023, bulan :5, total :344},{ tahun :2023, bulan :6, total :396},{ tahun :2023, bulan :7, total :348},{ tahun :2023, bulan :8, total :323},{ tahun :2023, bulan :9, total :310},{ tahun :2023, bulan :10, total :340},{ tahun :2023, bulan :11, total :311},{ tahun :2023, bulan :12, total :290}], nama_wisata : Kawasan Goa Cerme , periode_prediksi :12}" 2>&1
+Output: Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.
+
+Command: python3 "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "{ data :[{ tahun :2022, bulan :1, total :337},{ tahun :2022, bulan :2, total :268},{ tahun :2022, bulan :3, total :363},{ tahun :2022, bulan :4, total :119},{ tahun :2022, bulan :5, total :425},{ tahun :2022, bulan :6, total :198},{ tahun :2022, bulan :7, total :220},{ tahun :2022, bulan :8, total :218},{ tahun :2022, bulan :9, total :188},{ tahun :2022, bulan :10, total :196},{ tahun :2022, bulan :11, total :350},{ tahun :2022, bulan :12, total :323},{ tahun :2023, bulan :1, total :1657},{ tahun :2023, bulan :2, total :251},{ tahun :2023, bulan :3, total :282},{ tahun :2023, bulan :4, total :365},{ tahun :2023, bulan :5, total :344},{ tahun :2023, bulan :6, total :396},{ tahun :2023, bulan :7, total :348},{ tahun :2023, bulan :8, total :323},{ tahun :2023, bulan :9, total :310},{ tahun :2023, bulan :10, total :340},{ tahun :2023, bulan :11, total :311},{ tahun :2023, bulan :12, total :290}], nama_wisata : Kawasan Goa Cerme , periode_prediksi :12}" 2>&1
+Output: Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.
+
+Command: python3 "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "{ data :[{ tahun :2022, bulan :1, total :2871},{ tahun :2022, bulan :2, total :1346},{ tahun :2022, bulan :3, total :1416},{ tahun :2022, bulan :4, total :412},{ tahun :2022, bulan :5, total :6510},{ tahun :2022, bulan :6, total :1334},{ tahun :2022, bulan :7, total :1260},{ tahun :2022, bulan :8, total :986},{ tahun :2022, bulan :9, total :964},{ tahun :2022, bulan :10, total :1915},{ tahun :2022, bulan :11, total :850},{ tahun :2022, bulan :12, total :950},{ tahun :2023, bulan :1, total :0},{ tahun :2023, bulan :2, total :760},{ tahun :2023, bulan :3, total :1081},{ tahun :2023, bulan :4, total :5161},{ tahun :2023, bulan :5, total :2157},{ tahun :2023, bulan :6, total :1366},{ tahun :2023, bulan :7, total :2000},{ tahun :2023, bulan :8, total :1070},{ tahun :2023, bulan :9, total :1688},{ tahun :2023, bulan :10, total :1794},{ tahun :2023, bulan :11, total :1260},{ tahun :2023, bulan :12, total :2770}], nama_wisata : Pantai Kwaru , periode_prediksi :12}" 2>&1
+Output: Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.
+
+Command: python3 "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "{ data :[{ tahun :2022, bulan :1, total :2871},{ tahun :2022, bulan :2, total :1346},{ tahun :2022, bulan :3, total :1416},{ tahun :2022, bulan :4, total :412},{ tahun :2022, bulan :5, total :6510},{ tahun :2022, bulan :6, total :1334},{ tahun :2022, bulan :7, total :1260},{ tahun :2022, bulan :8, total :986},{ tahun :2022, bulan :9, total :964},{ tahun :2022, bulan :10, total :1915},{ tahun :2022, bulan :11, total :850},{ tahun :2022, bulan :12, total :950},{ tahun :2023, bulan :1, total :0},{ tahun :2023, bulan :2, total :760},{ tahun :2023, bulan :3, total :1081},{ tahun :2023, bulan :4, total :5161},{ tahun :2023, bulan :5, total :2157},{ tahun :2023, bulan :6, total :1366},{ tahun :2023, bulan :7, total :2000},{ tahun :2023, bulan :8, total :1070},{ tahun :2023, bulan :9, total :1688},{ tahun :2023, bulan :10, total :1794},{ tahun :2023, bulan :11, total :1260},{ tahun :2023, bulan :12, total :2770}], nama_wisata : Pantai Kwaru , periode_prediksi :12}" 2>&1
+Output: Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.
+
+Command: python3 "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "{ data :[{ tahun :2022, bulan :1, total :2871},{ tahun :2022, bulan :2, total :1346},{ tahun :2022, bulan :3, total :1416},{ tahun :2022, bulan :4, total :412},{ tahun :2022, bulan :5, total :6510},{ tahun :2022, bulan :6, total :1334},{ tahun :2022, bulan :7, total :1260},{ tahun :2022, bulan :8, total :986},{ tahun :2022, bulan :9, total :964},{ tahun :2022, bulan :10, total :1915},{ tahun :2022, bulan :11, total :850},{ tahun :2022, bulan :12, total :950},{ tahun :2023, bulan :1, total :0},{ tahun :2023, bulan :2, total :760},{ tahun :2023, bulan :3, total :1081},{ tahun :2023, bulan :4, total :5161},{ tahun :2023, bulan :5, total :2157},{ tahun :2023, bulan :6, total :1366},{ tahun :2023, bulan :7, total :2000},{ tahun :2023, bulan :8, total :1070},{ tahun :2023, bulan :9, total :1688},{ tahun :2023, bulan :10, total :1794},{ tahun :2023, bulan :11, total :1260},{ tahun :2023, bulan :12, total :2770}], nama_wisata : Pantai Kwaru , periode_prediksi :12}" 2>&1
+Output: Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.
+
+Command: python3 "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "{ data :[{ tahun :2022, bulan :1, total :2871},{ tahun :2022, bulan :2, total :1346},{ tahun :2022, bulan :3, total :1416},{ tahun :2022, bulan :4, total :412},{ tahun :2022, bulan :5, total :6510},{ tahun :2022, bulan :6, total :1334},{ tahun :2022, bulan :7, total :1260},{ tahun :2022, bulan :8, total :986},{ tahun :2022, bulan :9, total :964},{ tahun :2022, bulan :10, total :1915},{ tahun :2022, bulan :11, total :850},{ tahun :2022, bulan :12, total :950},{ tahun :2023, bulan :1, total :0},{ tahun :2023, bulan :2, total :760},{ tahun :2023, bulan :3, total :1081},{ tahun :2023, bulan :4, total :5161},{ tahun :2023, bulan :5, total :2157},{ tahun :2023, bulan :6, total :1366},{ tahun :2023, bulan :7, total :2000},{ tahun :2023, bulan :8, total :1070},{ tahun :2023, bulan :9, total :1688},{ tahun :2023, bulan :10, total :1794},{ tahun :2023, bulan :11, total :1260},{ tahun :2023, bulan :12, total :2770}], nama_wisata : Pantai Kwaru , periode_prediksi :12}" 2>&1
+Output: Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.
+
+Command: python3 "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "{ data :[{ tahun :2022, bulan :1, total :2871},{ tahun :2022, bulan :2, total :1346},{ tahun :2022, bulan :3, total :1416},{ tahun :2022, bulan :4, total :412},{ tahun :2022, bulan :5, total :6510},{ tahun :2022, bulan :6, total :1334},{ tahun :2022, bulan :7, total :1260},{ tahun :2022, bulan :8, total :986},{ tahun :2022, bulan :9, total :964},{ tahun :2022, bulan :10, total :1915},{ tahun :2022, bulan :11, total :850},{ tahun :2022, bulan :12, total :950},{ tahun :2023, bulan :1, total :0},{ tahun :2023, bulan :2, total :760},{ tahun :2023, bulan :3, total :1081},{ tahun :2023, bulan :4, total :5161},{ tahun :2023, bulan :5, total :2157},{ tahun :2023, bulan :6, total :1366},{ tahun :2023, bulan :7, total :2000},{ tahun :2023, bulan :8, total :1070},{ tahun :2023, bulan :9, total :1688},{ tahun :2023, bulan :10, total :1794},{ tahun :2023, bulan :11, total :1260},{ tahun :2023, bulan :12, total :2770}], nama_wisata : Pantai Kwaru , periode_prediksi :12}" 2>&1
+Output: Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.
+
+[2025-07-08 08:26:52] Starting Python script execution
+Script found at: C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py
+Using Python at: python
+JSON data prepared successfully
+Executing command: python "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "{ data :[{ tahun :2022, bulan :1, total :2871},{ tahun :2022, bulan :2, total :1346},{ tahun :2022, bulan :3, total :1416},{ tahun :2022, bulan :4, total :412},{ tahun :2022, bulan :5, total :6510},{ tahun :2022, bulan :6, total :1334},{ tahun :2022, bulan :7, total :1260},{ tahun :2022, bulan :8, total :986},{ tahun :2022, bulan :9, total :964},{ tahun :2022, bulan :10, total :1915},{ tahun :2022, bulan :11, total :850},{ tahun :2022, bulan :12, total :950},{ tahun :2023, bulan :1, total :0},{ tahun :2023, bulan :2, total :760},{ tahun :2023, bulan :3, total :1081},{ tahun :2023, bulan :4, total :5161},{ tahun :2023, bulan :5, total :2157},{ tahun :2023, bulan :6, total :1366},{ tahun :2023, bulan :7, total :2000},{ tahun :2023, bulan :8, total :1070},{ tahun :2023, bulan :9, total :1688},{ tahun :2023, bulan :10, total :1794},{ tahun :2023, bulan :11, total :1260},{ tahun :2023, bulan :12, total :2770}], nama_wisata : Pantai Kwaru , periode_prediksi :12}" 2>&1
+Command executed, output length: 130
+Successfully received result from Python
+Result status: error
+[2025-07-08 08:28:43] Starting Python script execution
+Script found at: C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py
+Using Python at: python
+JSON data prepared successfully
+JSON content sample: {"data":[{"tahun":2022,"bulan":1,"total":2871},{"tahun":2022,"bulan":2,"total":1346},{"tahun":2022,"bulan":3,"total":1416},{"tahun":2022,"bulan":4,"total":412},{"tahun":2022,"bulan":5,"total":6510},{"...
+Executing command: python "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "C:\Users\Acer\AppData\Local\Temp\php842.tmp" 2>&1
+Command executed, output length: 96
+Successfully parsed Python output
+[2025-07-08 08:28:49] Starting Python script execution
+Script found at: C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py
+Using Python at: python
+JSON data prepared successfully
+JSON content sample: {"data":[{"tahun":2022,"bulan":1,"total":2871},{"tahun":2022,"bulan":2,"total":1346},{"tahun":2022,"bulan":3,"total":1416},{"tahun":2022,"bulan":4,"total":412},{"tahun":2022,"bulan":5,"total":6510},{"...
+Executing command: python "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "C:\Users\Acer\AppData\Local\Temp\php1D13.tmp" 2>&1
+Command executed, output length: 96
+Successfully parsed Python output
+[2025-07-08 08:28:58] Starting Python script execution
+Script found at: C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py
+Using Python at: python
+JSON data prepared successfully
+JSON content sample: {"data":[{"tahun":2022,"bulan":1,"total":337},{"tahun":2022,"bulan":2,"total":268},{"tahun":2022,"bulan":3,"total":363},{"tahun":2022,"bulan":4,"total":119},{"tahun":2022,"bulan":5,"total":425},{"tahu...
+Executing command: python "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "C:\Users\Acer\AppData\Local\Temp\php3FB0.tmp" 2>&1
+Command executed, output length: 96
+Successfully parsed Python output
+[2025-07-08 08:30:03] Starting Python script execution
+Script found at: C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py
+Using Python at: python
+JSON data prepared successfully
+JSON content sample: {"data":[{"tahun":2022,"bulan":1,"total":337},{"tahun":2022,"bulan":2,"total":268},{"tahun":2022,"bulan":3,"total":363},{"tahun":2022,"bulan":4,"total":119},{"tahun":2022,"bulan":5,"total":425},{"tahu...
+Executing command: python "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "C:\Users\Acer\AppData\Local\Temp\php3D7A.tmp" 2>&1
+Command executed, output length: 96
+Successfully parsed Python output
+Command: python "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "C:\Users\Acer\AppData\Local\Temp\phpFE0A.tmp" 2>&1
+Output: {"status": "error", "message": "Model fitting failed: 'SARIMAXResults' object has no attribute 'order'", "traceback": "Traceback (most recent call last):\n  File \"C:\\xampp\\htdocs\\pradc-visitor-wisata/python/sarima_predict.py\", line 73, in main\n    'order': list(fitted_model.order),\n                  ^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Acer\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\statsmodels\\base\\wrapper.py\", line 34, in __getattribute__\n    obj = getattr(results, attr)\nAttributeError: 'SARIMAXResults' object has no attribute 'order'\n"}
+
+Command: python "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "C:\Users\Acer\AppData\Local\Temp\phpFF10.tmp" 2>&1
+Output: {"status": "success", "prediksi": {"1": 1595, "2": 211, "3": 226, "4": 321, "5": 291, "6": 349, "7": 296, "8": 275, "9": 259, "10": 291, "11": 261, "12": 241}, "model_params": {"order": [1, 1, 1], "seasonal_order": [1, 1, 1, 12], "aic": 10.0, "bic": NaN, "hqic": NaN}}
+
+Command: python "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "C:\Users\Acer\AppData\Local\Temp\phpBEA0.tmp" 2>&1
+Output: {"status": "success", "prediksi": {"1": 1595, "2": 211, "3": 226, "4": 321, "5": 291, "6": 349, "7": 296, "8": 275, "9": 259, "10": 291, "11": 261, "12": 241}, "model_params": {"order": [1, 1, 1], "seasonal_order": [1, 1, 1, 12], "aic": 10.0}}
+Command: python "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "C:\Users\Acer\AppData\Local\Temp\phpE7A5.tmp" 2>&1
+Output: {"status": "success", "prediksi": {"1": 1595, "2": 211, "3": 226, "4": 321, "5": 291, "6": 349, "7": 296, "8": 275, "9": 259, "10": 291, "11": 261, "12": 241}, "model_params": {"order": [1, 1, 1], "seasonal_order": [1, 1, 1, 12], "aic": 10.0}}
+Command: python "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "C:\Users\Acer\AppData\Local\Temp\phpA191.tmp" 2>&1
+Output: {"status": "success", "prediksi": {"1": 1595, "2": 211, "3": 226, "4": 321, "5": 291, "6": 349, "7": 296, "8": 275, "9": 259, "10": 291, "11": 261, "12": 241}, "model_params": {"order": [1, 1, 1], "seasonal_order": [1, 1, 1, 12], "aic": 10.0}}
+Command: python "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "C:\Users\Acer\AppData\Local\Temp\phpD295.tmp" 2>&1
+Output: {"status": "success", "prediksi": {"1": 1395, "2": -11, "3": 20, "4": 103, "5": 82, "6": 134, "7": 86, "8": 61, "9": 48, "10": 78, "11": 49, "12": 28}, "model_params": {"order": [1, 1, 1], "seasonal_order": [1, 1, 1, 12], "aic": 10.0}}
+Command: python "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "C:\Users\Acer\AppData\Local\Temp\php2049.tmp" 2>&1
+Output: {"status": "success", "prediksi": {"1": 1595, "2": 211, "3": 226, "4": 321, "5": 291, "6": 349, "7": 296, "8": 275, "9": 259, "10": 291, "11": 261, "12": 241}, "model_params": {"order": [1, 1, 1], "seasonal_order": [1, 1, 1, 12], "aic": 10.0}}
+Command: python "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "C:\Users\Acer\AppData\Local\Temp\php2B5D.tmp" 2>&1
+Output: C:\Users\Acer\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\tools\eval_measures.py:414: RuntimeWarning: invalid value encountered in log
+  return -2.0 * llf + np.log(nobs) * df_modelwc
+C:\Users\Acer\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\tools\eval_measures.py:439: RuntimeWarning: invalid value encountered in log
+  return -2.0 * llf + 2 * np.log(np.log(nobs)) * df_modelwc
+{"status": "success", "prediksi": {"1": 1595, "2": 211, "3": 226, "4": 321, "5": 291, "6": 349, "7": 296, "8": 275, "9": 259, "10": 291, "11": 261, "12": 241}, "model_params": {"order": [1, 1, 1], "seasonal_order": [1, 1, 1, 12], "aic": 10.0, "bic": NaN, "hqic": NaN}, "input_summary": {"data_points": 24, "date_range": {"start": "2022-01-01 00:00:00", "end": "2023-12-01 00:00:00"}, "average_visitors": 351, "total_visitors": 8422}}
+
+Command: python "C:\xampp\htdocs\pradc-visitor-wisata/python/sarima_predict.py" "C:\Users\Acer\AppData\Local\Temp\php9572.tmp" 2>&1
+Output: {"status": "success", "prediksi": {"1": 1595, "2": 211, "3": 226, "4": 321, "5": 291, "6": 349, "7": 296, "8": 275, "9": 259, "10": 291, "11": 261, "12": 241}, "model_params": {"order": [1, 1, 1], "seasonal_order": [1, 1, 1, 12], "aic": 10.0}}
+Command: python "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\ACER\AppData\Local\Temp\php361B.tmp" 2>&1
+Output: Traceback (most recent call last):
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 12, in <module>
+    from pmdarima import auto_arima
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\site-packages\pmdarima\__init__.py", line 52, in <module>
+    from .arima import auto_arima, ARIMA, AutoARIMA, StepwiseContext, decompose
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\site-packages\pmdarima\arima\__init__.py", line 5, in <module>
+    from .approx import *
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\site-packages\pmdarima\arima\approx.py", line 9, in <module>
+    from ..utils.array import c, check_endog
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\site-packages\pmdarima\utils\__init__.py", line 5, in <module>
+    from .array import *
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\site-packages\pmdarima\utils\array.py", line 13, in <module>
+    from ._array import C_intgrt_vec
+  File "pmdarima\\utils\\_array.pyx", line 1, in init pmdarima.utils._array
+ValueError: numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject
+
+Command: python "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\ACER\AppData\Local\Temp\php3953.tmp" 2>&1
+Output: Traceback (most recent call last):
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 12, in <module>
+    from pmdarima import auto_arima
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\site-packages\pmdarima\__init__.py", line 52, in <module>
+    from .arima import auto_arima, ARIMA, AutoARIMA, StepwiseContext, decompose
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\site-packages\pmdarima\arima\__init__.py", line 5, in <module>
+    from .approx import *
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\site-packages\pmdarima\arima\approx.py", line 9, in <module>
+    from ..utils.array import c, check_endog
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\site-packages\pmdarima\utils\__init__.py", line 5, in <module>
+    from .array import *
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\site-packages\pmdarima\utils\array.py", line 13, in <module>
+    from ._array import C_intgrt_vec
+  File "pmdarima\\utils\\_array.pyx", line 1, in init pmdarima.utils._array
+ValueError: numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject
+
+Command: python "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\ACER\AppData\Local\Temp\php6AD5.tmp" 2>&1
+Output: Traceback (most recent call last):
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 109, in <module>
+    main()
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 105, in main
+    sys.stdout.write(json.dumps(response, ensure_ascii=False))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable
+
+Command: python "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\ACER\AppData\Local\Temp\php35B8.tmp" 2>&1
+Output: Traceback (most recent call last):
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 106, in <module>
+    debugfile.write(json.dumps(response, indent=2, ensure_ascii=False))
+                               ^^^^^^^^
+NameError: name 'response' is not defined
+
+Command: python "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\ACER\AppData\Local\Temp\php39FA.tmp" 2>&1
+Output: Traceback (most recent call last):
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 111, in <module>
+    main()
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 107, in main
+    sys.stdout.write(json.dumps(response, ensure_ascii=False))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable
+
+Command: python "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\ACER\AppData\Local\Temp\php5687.tmp" 2>&1
+Output:   File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 103
+    except Exception as e:
+                          ^
+IndentationError: unindent does not match any outer indentation level
+
+Command: python "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\ACER\AppData\Local\Temp\php63B7.tmp" 2>&1
+Output:   File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 103
+    except Exception as e:
+                          ^
+IndentationError: unindent does not match any outer indentation level
+
+Command: python "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\ACER\AppData\Local\Temp\php8A84.tmp" 2>&1
+Output: Traceback (most recent call last):
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 121, in <module>
+    main()
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 107, in main
+    output_json = json.dumps(response, ensure_ascii=False, allow_nan=False)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable
+
+Command: python "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\ACER\AppData\Local\Temp\php7EE.tmp" 2>&1
+Output: Traceback (most recent call last):
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 121, in <module>
+    main()
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 107, in main
+    output_json = json.dumps(response, ensure_ascii=False, allow_nan=False)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable
+
+Command: python "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\ACER\AppData\Local\Temp\php30B5.tmp" 2>&1
+Output: Traceback (most recent call last):
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 121, in <module>
+    main()
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 107, in main
+    output_json = json.dumps(response, ensure_ascii=False, allow_nan=False)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable
+
+Command: python "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\ACER\AppData\Local\Temp\php9647.tmp" 2>&1
+Output: Traceback (most recent call last):
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 95, in <module>
+    main()
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 91, in main
+    sys.stdout.write(json.dumps(response, ensure_ascii=False))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable
+
+Command: python "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\ACER\AppData\Local\Temp\phpCFA7.tmp" 2>&1
+Output: Traceback (most recent call last):
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 95, in <module>
+    main()
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 91, in main
+    sys.stdout.write(json.dumps(response, ensure_ascii=False))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable
+
+Command: python "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\ACER\AppData\Local\Temp\phpBEC8.tmp" 2>&1
+Output: {"status": "error", "message": "Invalid historical data format", "forecast": {}, "model_stats": {}, "trace": null}
+
+CMD: python "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\ACER\AppData\Local\Temp\sar4AEA.tmp" 2>&1
+OUTPUT: Traceback (most recent call last):
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 134, in <module>
+    main()
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 131, in main
+    print(json.dumps(response, default=safe_serialize, ensure_ascii=False))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 129, in safe_serialize
+    raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
+TypeError: Object of type <class 'numpy.bool_'> is not JSON serializable
+
+CMD: python "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\ACER\AppData\Local\Temp\sar8592.tmp" 2>&1
+OUTPUT: Traceback (most recent call last):
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 134, in <module>
+    main()
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 131, in main
+    print(json.dumps(response, default=safe_serialize, ensure_ascii=False))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 129, in safe_serialize
+    raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
+TypeError: Object of type <class 'numpy.bool_'> is not JSON serializable
+
+CMD: python "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\ACER\AppData\Local\Temp\sarC14B.tmp" 2>&1
+OUTPUT: Traceback (most recent call last):
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 134, in <module>
+    main()
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 131, in main
+    print(json.dumps(response, default=safe_serialize, ensure_ascii=False))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\laragon\www\pariwisata-sarima-main/python/sarima_predict.py", line 129, in safe_serialize
+    raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
+TypeError: Object of type <class 'numpy.bool_'> is not JSON serializable
+

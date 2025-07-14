@@ -31,6 +31,7 @@ if (isset($_POST['update'])) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Edit Data Wisata</title>
   <style>
@@ -43,25 +44,29 @@ if (isset($_POST['update'])) {
       height: 100vh;
       margin: 0;
     }
+
     .form-container {
       background: #ffffff;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       width: 100%;
       max-width: 500px;
     }
+
     .form-container h2 {
       margin-bottom: 20px;
       color: #333;
       text-align: center;
     }
+
     label {
       display: block;
       margin-bottom: 6px;
       color: #555;
       font-weight: 600;
     }
+
     input[type="text"],
     input[type="number"],
     input[type="date"] {
@@ -73,12 +78,14 @@ if (isset($_POST['update'])) {
       box-sizing: border-box;
       transition: border-color 0.3s;
     }
+
     input[type="text"]:focus,
     input[type="number"]:focus,
     input[type="date"]:focus {
       border-color: #007bff;
       outline: none;
     }
+
     button[type="submit"] {
       background: #007bff;
       color: #fff;
@@ -91,11 +98,13 @@ if (isset($_POST['update'])) {
       cursor: pointer;
       transition: background 0.3s;
     }
+
     button[type="submit"]:hover {
       background: #0056b3;
     }
   </style>
 </head>
+
 <body>
   <div class="form-container">
     <h2>Edit Data Wisata</h2>
@@ -109,9 +118,6 @@ if (isset($_POST['update'])) {
       <label>Pendapatan</label>
       <input type="number" name="pendapatan" value="<?= htmlentities($data->Pendapatan) ?>" required>
 
-      <label>Sewa Gedung</label>
-      <input type="number" name="sewa_gedung" value="<?= htmlentities($data->SewaGedung) ?>" required>
-
       <label>Tanggal</label>
       <input type="date" name="tanggal" value="<?= htmlentities($data->Tanggal) ?>" required>
 
@@ -119,4 +125,5 @@ if (isset($_POST['update'])) {
     </form>
   </div>
 </body>
+
 </html>

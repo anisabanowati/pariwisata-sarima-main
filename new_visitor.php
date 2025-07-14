@@ -7,7 +7,7 @@ $uid = $_SESSION['odmsaid'];        // id user login
 
 /* ===== Ambil profil user ===== */
 $stmt = $dbh->prepare("SELECT AdminName, MobileNumber AS SiteName
-                       FROM tbladmin WHERE ID = :id LIMIT 1");
+                       FROM users WHERE ID = :id LIMIT 1");
 $stmt->bindParam(':id', $uid, PDO::PARAM_INT);
 $stmt->execute();
 $user       = $stmt->fetch(PDO::FETCH_ASSOC);

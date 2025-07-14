@@ -7,7 +7,7 @@ $aid      = isset($_SESSION['odmsaid']) ? $_SESSION['odmsaid'] : 0;
 $isAdmin  = false;
 
 if ($aid) {
-    $stmt = $dbh->prepare("SELECT AdminName FROM tbladmin WHERE ID = :aid LIMIT 1");
+    $stmt = $dbh->prepare("SELECT AdminName FROM users WHERE ID = :aid LIMIT 1");
     $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
     $stmt->execute();
     $isAdmin = ($stmt->fetchColumn() === 'Admin');

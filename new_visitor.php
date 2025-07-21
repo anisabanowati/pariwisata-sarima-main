@@ -6,7 +6,7 @@ check_login();
 $uid = $_SESSION['odmsaid'];        // id user login
 
 /* ===== Ambil profil user ===== */
-$stmt = $dbh->prepare("SELECT AdminName, MobileNumber AS SiteName
+$stmt = $dbh->prepare("SELECT AdminName, NamaWisata AS SiteName
                        FROM users WHERE ID = :id LIMIT 1");
 $stmt->bindParam(':id', $uid, PDO::PARAM_INT);
 $stmt->execute();

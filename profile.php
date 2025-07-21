@@ -77,23 +77,38 @@ if (isset($_POST['submit'])) {
                                   <h6 class="text-right">Edit Profile</h6>
                                 </div>
                                 <div class="row mt-2">
-                                  <div class="col-md-6"><input type="text" class="form-control" name="firstname" value="<?php echo $row->FirstName; ?>" required='true'></div>
-                                  <div class="col-md-6"><input type="text" class="form-control" value="<?php echo $row->LastName; ?> " name="lastname" required></div>
+                                <div class="col-md-6">
+                                  <label class="form-group">First Name</label>
+                                  <input type="text" class="form-control" name="firstname" value="<?php echo $row->FirstName; ?>" required>
                                 </div>
-                                <div class="row mt-3">
-                                  <div class="col-md-6"><input type="text" class="form-control" name="email" value="<?php echo $row->Email; ?>" required></div>
-                                  <div class="col-md-6"><input type="text" class="form-control" value="<?php echo $row->MobileNumber; ?>" name="mobilenumber" required></div>
+                                <div class="col-md-6">
+                                  <label class="form-group">Last Name</label>
+                                  <input type="text" class="form-control" name="lastname" value="<?php echo $row->LastName; ?>" required>
                                 </div>
-                                <div class="row mt-3">
-                                  <div class="col-md-6">
-                                    <label class="form-group">User Name</label>
-                                    <input type="text" class="form-control" name="username" value="<?php echo $row->UserName; ?>" required>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <label class="form-group">Permission</label>
-                                    <input type="text" class="form-control" name="adminname" value="<?php echo $row->AdminName; ?>" readonly="true">
-                                  </div>
+                              </div>
+
+                              <div class="row mt-3">
+                                <div class="col-md-6">
+                                  <label class="form-group">Nama Panggilan</label>
+                                  <input type="text" class="form-control" name="namapanggilan" value="<?php echo $row->NamaPanggilan; ?>" required>
                                 </div>
+                                <div class="col-md-6">
+                                  <label class="form-group">Nama Wisata</label>
+                                  <input type="text" class="form-control" name="namawisata" value="<?php echo $row->NamaWisata; ?>" required>
+                                </div>
+                              </div>
+
+                              <div class="row mt-3">
+                                <div class="col-md-6">
+                                  <label class="form-group">User Name</label>
+                                  <input type="text" class="form-control" name="username" value="<?php echo $row->UserName; ?>" required>
+                                </div>
+                                <div class="col-md-6">
+                                  <label class="form-group">Permission</label>
+                                  <input type="text" class="form-control" name="adminname" value="<?php echo $row->AdminName; ?>" readonly>
+                                </div>
+                              </div>
+
                                 <div class="row mt-3">
                                   <!-- <div class="col-md-6">
                                      <label class="form-group">Reg Date</label>

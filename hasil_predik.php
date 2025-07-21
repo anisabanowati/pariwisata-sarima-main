@@ -16,7 +16,7 @@ try {
 
 // Check admin status and get user info
 $uid = $_SESSION['odmsaid'];
-$stmt = $dbh->prepare("SELECT AdminName, MobileNumber AS SiteName FROM users WHERE ID = ? LIMIT 1");
+$stmt = $dbh->prepare("SELECT AdminName, NamaWisata AS SiteName FROM users WHERE ID = ? LIMIT 1");
 $stmt->execute([$uid]);
 $user = $stmt->fetch();
 $defaultSite = $user ? $user['SiteName'] : '';

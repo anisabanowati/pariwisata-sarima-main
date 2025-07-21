@@ -140,10 +140,10 @@ if (isset($_GET['delid'])) {
                                             ?>
                                                     <tr>
                                                         <td class="text-center"><?php echo htmlentities($cnt); ?></td>
-                                                        <td><?php echo htmlentities($row->UserName); ?></td>
+                                                        <td><?php echo htmlentities($row->FirstName); ?></td>
 
-                                                        <td class="text-center"><?php echo htmlentities($row->MobileNumber); ?></td>
-                                                        <td><?php echo htmlentities($row->Email); ?></td>
+                                                        <td class="text-center"><?php echo htmlentities($row->NamaWisata); ?></td>
+                                                        <td><?php echo htmlentities($row->UserName); ?></td>
                                                         <td class="text-center">
                                                             <?php echo str_repeat("•", 5); ?></td>
                                                         <td class=" text-center">

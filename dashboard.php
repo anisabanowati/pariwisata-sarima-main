@@ -176,8 +176,8 @@ check_login();
           <div class="welcome-banner">
             <div class="row">
               <div class="col-md-8">
-                <h3>Selamat Datang di Sistem Informasi Pariwisata Bantul</h3>
-                <p class="mb-0">Pantau dan kelola data pariwisata Kabupaten Bantul secara real-time</p>
+                <h3>Selamat Datang di Sistem Prediksi Kunjungan Wisatawan di Kabupaten Bantul</h3>
+                <p class="mb-0">Pantau dan kelola data pariwisata Kabupaten Bantul</p>
               </div>
               <div class="col-md-4 text-right">
                 <i class="fas fa-map-marked-alt fa-3x" style="opacity: 0.3;"></i>
@@ -333,65 +333,65 @@ check_login();
                       </tr>
                     </thead>
                     <tbody>
-<?php
-$sql = "SELECT YEAR(Tanggal) as year, SUM(JumlahPengunjung) as total 
-        FROM tourism_data 
-        GROUP BY YEAR(Tanggal) 
-        ORDER BY YEAR(Tanggal) ASC";
-$query = $dbh->prepare($sql);
-$query->execute();
-$yearly_data = $query->fetchAll(PDO::FETCH_OBJ);
+                      <?php
+                      $sql = "SELECT YEAR(Tanggal) as year, SUM(JumlahPengunjung) as total 
+                              FROM tourism_data 
+                              GROUP BY YEAR(Tanggal) 
+                              ORDER BY YEAR(Tanggal) ASC";
+                      $query = $dbh->prepare($sql);
+                      $query->execute();
+                      $yearly_data = $query->fetchAll(PDO::FETCH_OBJ);
 
-// Hitung perubahan antar tahun (dari bawah ke atas)
-$processed_data = [];
-$previous_total = null;
+                      // Hitung perubahan antar tahun (dari bawah ke atas)
+                      $processed_data = [];
+                      $previous_total = null;
 
-foreach ($yearly_data as $data) {
-    $year = $data->year;
-    $total = $data->total;
-    $change = 0;
-    $percentage = 0;
-    $trend_class = 'trend-neutral';
-    $trend_icon = '';
+                      foreach ($yearly_data as $data) {
+                          $year = $data->year;
+                          $total = $data->total;
+                          $change = 0;
+                          $percentage = 0;
+                          $trend_class = 'trend-neutral';
+                          $trend_icon = '';
 
-    if ($previous_total !== null) {
-        $change = $total - $previous_total;
-        $percentage = ($change / $previous_total) * 100;
+                          if ($previous_total !== null) {
+                              $change = $total - $previous_total;
+                              $percentage = ($change / $previous_total) * 100;
 
-        if ($change > 0) {
-            $trend_class = 'trend-up';
-            $trend_icon = '<i class="fas fa-arrow-up trend-arrow"></i>';
-        } elseif ($change < 0) {
-            $trend_class = 'trend-down';
-            $trend_icon = '<i class="fas fa-arrow-down trend-arrow"></i>';
-        }
-    }
+                              if ($change > 0) {
+                                  $trend_class = 'trend-up';
+                                  $trend_icon = '<i class="fas fa-arrow-up trend-arrow"></i>';
+                              } elseif ($change < 0) {
+                                  $trend_class = 'trend-down';
+                                  $trend_icon = '<i class="fas fa-arrow-down trend-arrow"></i>';
+                              }
+                          }
 
-    $processed_data[] = [
-        'year' => $year,
-        'total' => $total,
-        'change' => $change,
-        'percentage' => $percentage,
-        'trend_class' => $trend_class,
-        'trend_icon' => $trend_icon
-    ];
+                          $processed_data[] = [
+                              'year' => $year,
+                              'total' => $total,
+                              'change' => $change,
+                              'percentage' => $percentage,
+                              'trend_class' => $trend_class,
+                              'trend_icon' => $trend_icon
+                          ];
 
-    $previous_total = $total;
-}
+                          $previous_total = $total;
+                      }
 
-// Balik data agar tahun terbaru tampil di atas
-$processed_data = array_reverse($processed_data);
+                      // Balik data agar tahun terbaru tampil di atas
+                      $processed_data = array_reverse($processed_data);
 
-foreach ($processed_data as $item) {
-    echo '<tr>
-            <td>' . htmlspecialchars($item['year']) . '</td>
-            <td class="visitor-count">' . number_format($item['total']) . '</td>
-            <td><span class="trend-change ' . $item['trend_class'] . '">' . $item['trend_icon'] . number_format(abs($item['change'])) . '</span></td>
-            <td><span class="trend-change ' . $item['trend_class'] . '">' . $item['trend_icon'] . round(abs($item['percentage']), 1) . '%</span></td>
-          </tr>';
-}
-?>
-</tbody>
+                      foreach ($processed_data as $item) {
+                          echo '<tr>
+                                  <td>' . htmlspecialchars($item['year']) . '</td>
+                                  <td class="visitor-count">' . number_format($item['total']) . '</td>
+                                  <td><span class="trend-change ' . $item['trend_class'] . '">' . $item['trend_icon'] . number_format(abs($item['change'])) . '</span></td>
+                                  <td><span class="trend-change ' . $item['trend_class'] . '">' . $item['trend_icon'] . round(abs($item['percentage']), 1) . '%</span></td>
+                                </tr>';
+                      }
+                      ?>
+                      </tbody>
 
 
                   </table>

@@ -343,3 +343,52 @@ OUTPUT: Traceback (most recent call last):
     raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
 TypeError: Object of type <class 'numpy.bool_'> is not JSON serializable
 
+CMD: python "C:\laragon\www\pariwisata-sarima-main\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\HP\AppData\Local\Temp\sar8459.tmp" 2>&1
+OUTPUT: C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\statsmodels\tsa\base\tsa_model.py:837: ValueWarning: No supported index is available. Prediction results will be given with an integer index beginning at `start`.
+  return get_prediction_index(
+C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\statsmodels\tsa\base\tsa_model.py:837: FutureWarning: No supported index is available. In the next version, calling this method in a model without a supported index will result in an exception.
+  return get_prediction_index(
+{"status": "success", "message": "Uninitialized", "forecast": {"1": 1183, "2": 969, "3": 795, "4": 936, "5": 1256, "6": 992, "7": 977, "8": 727, "9": 851, "10": 962, "11": 806, "12": 1059}, "confidence_intervals": {"1": [9, 2357], "2": [-238, 2176], "3": [-444, 2034], "4": [-334, 2207], "5": [-45, 2557], "6": [-339, 2323], "7": [-383, 2338], "8": [-662, 2116], "9": [-566, 2268], "10": [-483, 2407], "11": [-666, 2277], "12": [-440, 2557]}, "model_stats": {"order": [0, 1, 1], "seasonal_order": [1, 0, 1, 12], "aic": 1761.6378370732612, "bic": 1772.5118325584415, "mae": 437.67706700150836, "rmse": 630.6409109143615, "mape": Infinity, "is_stationary": false, "adf_pvalue": 0.8551560120142718, "training_data_points": 127}}
+
+CMD: python "C:\laragon\www\pariwisata-sarima-main\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\HP\AppData\Local\Temp\sarB4FC.tmp" 2>&1
+OUTPUT: C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\statsmodels\tsa\base\tsa_model.py:837: ValueWarning: No supported index is available. Prediction results will be given with an integer index beginning at `start`.
+  return get_prediction_index(
+C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\statsmodels\tsa\base\tsa_model.py:837: FutureWarning: No supported index is available. In the next version, calling this method in a model without a supported index will result in an exception.
+  return get_prediction_index(
+{"status": "success", "message": "Uninitialized", "forecast": {"1": 1183, "2": 969, "3": 795, "4": 936, "5": 1256, "6": 992, "7": 977, "8": 727, "9": 851, "10": 962, "11": 806, "12": 1059}, "confidence_intervals": {"1": [9, 2357], "2": [-238, 2176], "3": [-444, 2034], "4": [-334, 2207], "5": [-45, 2557], "6": [-339, 2323], "7": [-383, 2338], "8": [-662, 2116], "9": [-566, 2268], "10": [-483, 2407], "11": [-666, 2277], "12": [-440, 2557]}, "model_stats": {"order": [0, 1, 1], "seasonal_order": [1, 0, 1, 12], "aic": 1761.6378370732612, "bic": 1772.5118325584415, "mae": 437.67706700150836, "rmse": 630.6409109143615, "mape": Infinity, "is_stationary": false, "adf_pvalue": 0.8551560120142718, "training_data_points": 127}}
+
+CMD: python "C:\laragon\www\pariwisata-sarima-main\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\HP\AppData\Local\Temp\sarE8EA.tmp" 2>&1
+OUTPUT: C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\statsmodels\tsa\base\tsa_model.py:837: ValueWarning: No supported index is available. Prediction results will be given with an integer index beginning at `start`.
+  return get_prediction_index(
+C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\statsmodels\tsa\base\tsa_model.py:837: FutureWarning: No supported index is available. In the next version, calling this method in a model without a supported index will result in an exception.
+  return get_prediction_index(
+{"status": "success", "message": "Uninitialized", "forecast": {"1": 1222, "2": 1151, "3": 1019, "4": 1634, "5": 1267, "6": 1149, "7": 1142, "8": 1031, "9": 1048, "10": 1000, "11": 1053, "12": 1064}, "confidence_intervals": {"1": [-955, 3399], "2": [-1101, 3404], "3": [-1278, 3316], "4": [-704, 3973], "5": [-1112, 3646], "6": [-1270, 3568], "7": [-1317, 3601], "8": [-1466, 3528], "9": [-1487, 3584], "10": [-1573, 3573], "11": [-1557, 3663], "12": [-1582, 3711]}, "model_stats": {"order": [1, 1, 1], "seasonal_order": [0, 0, 1, 12], "aic": 1881.0956172649367, "bic": 1891.969612750117, "mae": 767.8193791773756, "rmse": 1128.6319596635194, "mape": Infinity, "is_stationary": false, "adf_pvalue": 0.27428882304337615, "training_data_points": 127}}
+
+CMD: python "C:\laragon\www\pariwisata-sarima-main\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\HP\AppData\Local\Temp\sarB94.tmp" 2>&1
+OUTPUT: C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\statsmodels\tsa\base\tsa_model.py:837: ValueWarning: No supported index is available. Prediction results will be given with an integer index beginning at `start`.
+  return get_prediction_index(
+C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\statsmodels\tsa\base\tsa_model.py:837: FutureWarning: No supported index is available. In the next version, calling this method in a model without a supported index will result in an exception.
+  return get_prediction_index(
+{"status": "success", "message": "Uninitialized", "forecast": {"1": 1183, "2": 969, "3": 795, "4": 936, "5": 1256, "6": 992, "7": 977, "8": 727, "9": 851, "10": 962, "11": 806, "12": 1059}, "confidence_intervals": {"1": [9, 2357], "2": [-238, 2176], "3": [-444, 2034], "4": [-334, 2207], "5": [-45, 2557], "6": [-339, 2323], "7": [-383, 2338], "8": [-662, 2116], "9": [-566, 2268], "10": [-483, 2407], "11": [-666, 2277], "12": [-440, 2557]}, "model_stats": {"order": [0, 1, 1], "seasonal_order": [1, 0, 1, 12], "aic": 1761.6378370732612, "bic": 1772.5118325584415, "mae": 437.67706700150836, "rmse": 630.6409109143615, "mape": Infinity, "is_stationary": false, "adf_pvalue": 0.8551560120142718, "training_data_points": 127}}
+
+CMD: python "C:\laragon\www\pariwisata-sarima-main\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\HP\AppData\Local\Temp\sar8296.tmp" 2>&1
+OUTPUT: C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\statsmodels\tsa\base\tsa_model.py:837: ValueWarning: No supported index is available. Prediction results will be given with an integer index beginning at `start`.
+  return get_prediction_index(
+C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\statsmodels\tsa\base\tsa_model.py:837: FutureWarning: No supported index is available. In the next version, calling this method in a model without a supported index will result in an exception.
+  return get_prediction_index(
+{"status": "success", "message": "Uninitialized", "forecast": {"1": 1183, "2": 969, "3": 795, "4": 936, "5": 1256, "6": 992, "7": 977, "8": 727, "9": 851, "10": 962, "11": 806, "12": 1059}, "confidence_intervals": {"1": [9, 2357], "2": [-238, 2176], "3": [-444, 2034], "4": [-334, 2207], "5": [-45, 2557], "6": [-339, 2323], "7": [-383, 2338], "8": [-662, 2116], "9": [-566, 2268], "10": [-483, 2407], "11": [-666, 2277], "12": [-440, 2557]}, "model_stats": {"order": [0, 1, 1], "seasonal_order": [1, 0, 1, 12], "aic": 1761.6378370732612, "bic": 1772.5118325584415, "mae": 437.67706700150836, "rmse": 630.6409109143615, "mape": Infinity, "is_stationary": false, "adf_pvalue": 0.8551560120142718, "training_data_points": 127}}
+
+CMD: python "C:\laragon\www\pariwisata-sarima-main\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\HP\AppData\Local\Temp\sar9C85.tmp" 2>&1
+OUTPUT: C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\statsmodels\tsa\base\tsa_model.py:837: ValueWarning: No supported index is available. Prediction results will be given with an integer index beginning at `start`.
+  return get_prediction_index(
+C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\statsmodels\tsa\base\tsa_model.py:837: FutureWarning: No supported index is available. In the next version, calling this method in a model without a supported index will result in an exception.
+  return get_prediction_index(
+{"status": "success", "message": "Uninitialized", "forecast": {"1": 1222, "2": 1151, "3": 1019, "4": 1634, "5": 1267, "6": 1149, "7": 1142, "8": 1031, "9": 1048, "10": 1000, "11": 1053, "12": 1064}, "confidence_intervals": {"1": [-955, 3399], "2": [-1101, 3404], "3": [-1278, 3316], "4": [-704, 3973], "5": [-1112, 3646], "6": [-1270, 3568], "7": [-1317, 3601], "8": [-1466, 3528], "9": [-1487, 3584], "10": [-1573, 3573], "11": [-1557, 3663], "12": [-1582, 3711]}, "model_stats": {"order": [1, 1, 1], "seasonal_order": [0, 0, 1, 12], "aic": 1881.0956172649367, "bic": 1891.969612750117, "mae": 767.8193791773756, "rmse": 1128.6319596635194, "mape": Infinity, "is_stationary": false, "adf_pvalue": 0.27428882304337615, "training_data_points": 127}}
+
+CMD: python "C:\laragon\www\pariwisata-sarima-main\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\HP\AppData\Local\Temp\sarB4B0.tmp" 2>&1
+OUTPUT: C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\statsmodels\tsa\base\tsa_model.py:837: ValueWarning: No supported index is available. Prediction results will be given with an integer index beginning at `start`.
+  return get_prediction_index(
+C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\statsmodels\tsa\base\tsa_model.py:837: FutureWarning: No supported index is available. In the next version, calling this method in a model without a supported index will result in an exception.
+  return get_prediction_index(
+{"status": "success", "message": "Uninitialized", "forecast": {"1": 1183, "2": 969, "3": 795, "4": 936, "5": 1256, "6": 992, "7": 977, "8": 727, "9": 851, "10": 962, "11": 806, "12": 1059}, "confidence_intervals": {"1": [9, 2357], "2": [-238, 2176], "3": [-444, 2034], "4": [-334, 2207], "5": [-45, 2557], "6": [-339, 2323], "7": [-383, 2338], "8": [-662, 2116], "9": [-566, 2268], "10": [-483, 2407], "11": [-666, 2277], "12": [-440, 2557]}, "model_stats": {"order": [0, 1, 1], "seasonal_order": [1, 0, 1, 12], "aic": 1761.6378370732612, "bic": 1772.5118325584415, "mae": 437.67706700150836, "rmse": 630.6409109143615, "mape": Infinity, "is_stationary": false, "adf_pvalue": 0.8551560120142718, "training_data_points": 127}}
+

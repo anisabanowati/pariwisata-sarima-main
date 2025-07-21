@@ -145,42 +145,38 @@
                     </p>
 
                     <!-- TABLE page aktif -->
-                    <table class="table table-hover table-bordered" id="dataTableHover">
-                      <thead>
-                        <tr>
-                          <th class="text-center">No</th>
-                          <th>Nama Wisata</th>
-                          <th>Jumlah Pengunjung</th>
-                          <th>Pendapatan</th>
-                          <th>Tanggal</th>
-                          <th class="text-center">Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $no = $offset + 1;
-                        foreach ($pageData as $row): ?>
-                          <tr>
-                            <td class="text-center"><?= $no++ ?></td>
-                            <td><?= htmlentities($row->NamaWisata) ?></td>
-                            <td class="text-center"><?= htmlentities($row->JumlahPengunjung) ?></td>
-                            <td class="text-right">Rp <?= number_format($row->Pendapatan, 0, ',', '.') ?></td>
-                            <td class="text-center"><?= date('d-m-Y', strtotime($row->Tanggal)) ?></td>
-                            <td class="text-center">
-                              <!-- Aksi (detail / edit / delete) -->
-                              <!-- <a href="#" class="edit_data5" id="<?= $row->ID ?>"><i class="mdi mdi-eye"></i></a> -->
-                              <a href="edit_tourism.php?id=<?= $row->ID ?>" class="" style="color:orange"><i class="mdi mdi-pencil"></i></a>
-                              <a href="delete_tourism.php?id=<?= $row->ID ?>" class="ml-2" style="color:red"
-                                onclick="return confirm('Hapus data?');"><i class="mdi mdi-delete"></i></a>
-                            </td>
-                          </tr>
-                        <?php endforeach; ?>
-                        <?php if (!$pageData): ?>
-                          <tr>
-                            <td colspan="7" class="text-center">Tidak ada data</td>
-                          </tr>
-                        <?php endif; ?>
-                      </tbody>
-                    </table>
+                    <table class="table table-hover table-bordered">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama Wisata</th>
+                      <th>Jumlah Pengunjung</th>
+                      <th>Pendapatan</th>
+                      <th>Tanggal</th>
+                      <?php if (!$isAdmin): ?>
+                      <th class="text-center">Aksi</th>
+                      <?php endif; ?>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $no = $offset + 1;
+                    foreach ($pageData as $row): ?>
+                    <tr>
+                      <td><?= $no++ ?></td>
+                      <td><?= htmlentities($row->NamaWisata) ?></td>
+                      <td><?= htmlentities($row->JumlahPengunjung) ?></td>
+                      <td>Rp <?= number_format($row->Pendapatan, 0, ',', '.') ?></td>
+                      <td><?= date('d-m-Y', strtotime($row->Tanggal)) ?></td>
+                      <?php if (!$isAdmin): ?>
+                      <td class="text-center">
+                        <a href="edit_tourism.php?id=<?= $row->ID ?>" style="color:orange"><i class="mdi mdi-pencil"></i></a>
+                        <a href="delete_tourism.php?id=<?= $row->ID ?>" style="color:red" onclick="return confirm('Hapus data?');"><i class="mdi mdi-delete"></i></a>
+                      </td>
+                      <?php endif; ?>
+                    </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
 
                     <!-- ===== TABEL SEMUA DATA (hidden) ===== -->
                     <table id="fullExportTable" style="display:none">

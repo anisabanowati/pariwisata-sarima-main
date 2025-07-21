@@ -15,6 +15,7 @@ check_login();
       transition: transform 0.3s;
       margin-bottom: 20px;
       border-left: 4px solid #3c8dbc;
+      min-height: 150px;
     }
 
     .dashboard-card:hover {
@@ -28,7 +29,7 @@ check_login();
     }
 
     .card-value {
-      font-size: 1.8rem;
+      font-size: 1rem;
       font-weight: bold;
     }
 
@@ -190,7 +191,7 @@ check_login();
               <div class="dashboard-card card">
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-8">
+                    <div class="col-12">
                       <h6 class="card-title">Total Pengunjung</h6>
                       <div class="card-value">
                         <?php
@@ -249,7 +250,7 @@ check_login();
               <div class="dashboard-card card">
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-8">
+                    <div class="col-12">
                       <h6 class="card-title">Destinasi Wisata</h6>
                       <div class="card-value">
                         <?php
@@ -280,13 +281,13 @@ check_login();
               <div class="dashboard-card card">
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-8">
+                    <div class="col-12 ">
                       <h6 class="card-title">Data Bulanan</h6>
                       <div class="card-value">
                         <?php
                         // Query to count monthly records
                         $monthly_data = 0;
-                        $sql = "SELECT COUNT(*) as total FROM tourism_data WHERE RentangWaktu = 'Bulanan'";
+                        $sql = "SELECT COUNT(*) as total FROM tourism_data";
                         $query = $dbh->prepare($sql);
                         $query->execute();
                         $result = $query->fetch(PDO::FETCH_OBJ);
@@ -332,60 +333,67 @@ check_login();
                       </tr>
                     </thead>
                     <tbody>
-                      <?php
-                      // Query to get yearly visitors data with percentage change
-                      $sql = "SELECT 
-                                YEAR(Tanggal) as year, 
-                                SUM(JumlahPengunjung) as total,
-                                LAG(SUM(JumlahPengunjung)) OVER (ORDER BY YEAR(Tanggal)) as prev_total
-                              FROM tourism_data 
-                              GROUP BY YEAR(Tanggal) 
-                              ORDER BY YEAR(Tanggal) DESC";
-                      $query = $dbh->prepare($sql);
-                      $query->execute();
-                      $yearly_data = $query->fetchAll(PDO::FETCH_OBJ);
+<?php
+$sql = "SELECT YEAR(Tanggal) as year, SUM(JumlahPengunjung) as total 
+        FROM tourism_data 
+        GROUP BY YEAR(Tanggal) 
+        ORDER BY YEAR(Tanggal) ASC";
+$query = $dbh->prepare($sql);
+$query->execute();
+$yearly_data = $query->fetchAll(PDO::FETCH_OBJ);
 
-                      foreach ($yearly_data as $index => $data) {
-                        $year = $data->year;
-                        $total = $data->total;
-                        $prev_total = $data->prev_total;
+// Hitung perubahan antar tahun (dari bawah ke atas)
+$processed_data = [];
+$previous_total = null;
 
-                        // Calculate percentage change
-                        $change = 0;
-                        $percentage = 0;
-                        $trend_class = 'trend-neutral';
-                        $trend_icon = '';
+foreach ($yearly_data as $data) {
+    $year = $data->year;
+    $total = $data->total;
+    $change = 0;
+    $percentage = 0;
+    $trend_class = 'trend-neutral';
+    $trend_icon = '';
 
-                        if ($prev_total && $prev_total > 0) {
-                          $change = $total - $prev_total;
-                          $percentage = ($change / $prev_total) * 100;
+    if ($previous_total !== null) {
+        $change = $total - $previous_total;
+        $percentage = ($change / $previous_total) * 100;
 
-                          if ($change > 0) {
-                            $trend_class = 'trend-up';
-                            $trend_icon = '<i class="fas fa-arrow-up trend-arrow"></i>';
-                          } elseif ($change < 0) {
-                            $trend_class = 'trend-down';
-                            $trend_icon = '<i class="fas fa-arrow-down trend-arrow"></i>';
-                          }
-                        }
+        if ($change > 0) {
+            $trend_class = 'trend-up';
+            $trend_icon = '<i class="fas fa-arrow-up trend-arrow"></i>';
+        } elseif ($change < 0) {
+            $trend_class = 'trend-down';
+            $trend_icon = '<i class="fas fa-arrow-down trend-arrow"></i>';
+        }
+    }
 
-                        echo '<tr>
-                                <td>' . $year . '</td>
-                                <td class="visitor-count"><span class="count-up" data-target="' . $total . '">0</span></td>
-                                <td>
-                                  <span class="trend-change ' . $trend_class . '">
-                                    ' . $trend_icon . '<span class="count-up" data-target="' . abs($change) . '">0</span>
-                                  </span>
-                                </td>
-                                <td>
-                                  <span class="trend-change ' . $trend_class . '">
-                                    ' . $trend_icon . '<span class="count-up" data-target="' . abs(round($percentage, 1)) * 10 . '">0</span>%
-                                  </span>
-                                </td>
-                              </tr>';
-                      }
-                      ?>
-                    </tbody>
+    $processed_data[] = [
+        'year' => $year,
+        'total' => $total,
+        'change' => $change,
+        'percentage' => $percentage,
+        'trend_class' => $trend_class,
+        'trend_icon' => $trend_icon
+    ];
+
+    $previous_total = $total;
+}
+
+// Balik data agar tahun terbaru tampil di atas
+$processed_data = array_reverse($processed_data);
+
+foreach ($processed_data as $item) {
+    echo '<tr>
+            <td>' . htmlspecialchars($item['year']) . '</td>
+            <td class="visitor-count">' . number_format($item['total']) . '</td>
+            <td><span class="trend-change ' . $item['trend_class'] . '">' . $item['trend_icon'] . number_format(abs($item['change'])) . '</span></td>
+            <td><span class="trend-change ' . $item['trend_class'] . '">' . $item['trend_icon'] . round(abs($item['percentage']), 1) . '%</span></td>
+          </tr>';
+}
+?>
+</tbody>
+
+
                   </table>
                 </div>
               </div>

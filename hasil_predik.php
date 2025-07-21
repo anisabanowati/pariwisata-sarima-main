@@ -162,66 +162,47 @@ function exportToExcel($prediction, $filters)
     header('Cache-Control: max-age=0');
 
     $months = [
-        "Januari",
-        "Februari",
-        "Maret",
-        "April",
-        "Mei",
-        "Juni",
-        "Juli",
-        "Agustus",
-        "September",
-        "Oktober",
-        "November",
-        "Desember"
+        "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+        "Juli", "Agustus", "September", "Oktober", "November", "Desember"
     ];
 
     echo '<table border="1">
         <tr>
-            <th colspan="3" style="text-align:center;font-size:16px;background-color:#d9d9d9;">Laporan Prediksi Pengunjung</th>
+            <th colspan="2" style="text-align:center;font-size:16px;background-color:#d9d9d9;">Laporan Prediksi Pengunjung</th>
         </tr>
         <tr>
-            <td colspan="3"><strong>Tempat Wisata:</strong> ' . $filters['nama_wisata'] . '</td>
+            <td colspan="2"><strong>Tempat Wisata:</strong> ' . $filters['nama_wisata'] . '</td>
         </tr>
         <tr>
-            <td colspan="3"><strong>Tahun Prediksi:</strong> ' . ($filters['end_year'] + 1) . '</td>
+            <td colspan="2"><strong>Tahun Prediksi:</strong> ' . ($filters['end_year'] + 1) . '</td>
         </tr>
         <tr>
-            <td colspan="3"><strong>Tanggal Cetak:</strong> ' . date('d/m/Y H:i') . '</td>
+            <td colspan="2"><strong>Tanggal Cetak:</strong> ' . date('d/m/Y H:i') . '</td>
         </tr>
         <tr>
             <th style="background-color:#d9d9d9;">Bulan</th>
             <th style="background-color:#d9d9d9;">Prediksi Pengunjung</th>
-            <th style="background-color:#d9d9d9;">Rentang Keyakinan</th>
         </tr>';
 
     $total = 0;
     foreach ($prediction['forecast'] as $month => $value) {
         $monthName = $months[$month - 1] ?? $month;
-        $ci = isset($prediction['confidence_intervals'][$month])
-            ? number_format($prediction['confidence_intervals'][$month][0]) . ' - ' .
-            number_format($prediction['confidence_intervals'][$month][1])
-            : 'N/A';
-
         echo '<tr>
             <td>' . $monthName . '</td>
             <td>' . number_format($value) . '</td>
-            <td>' . $ci . '</td>
         </tr>';
-
         $total += $value;
     }
 
     echo '<tr style="font-weight:bold;">
         <td>Total</td>
-        <td colspan="2">' . number_format($total) . '</td>
+        <td>' . number_format($total) . '</td>
     </tr>
-    <tr>
-        <td colspan="3"><strong>Parameter Model:</strong> ' . json_encode($prediction['model_stats']) . '</td>
-    </tr>
+    
     </table>';
     exit;
 }
+
 
 /**
  * Enhanced Python script execution with better error handling

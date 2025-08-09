@@ -392,3 +392,15 @@ C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\site-packages\statsmodel
   return get_prediction_index(
 {"status": "success", "message": "Uninitialized", "forecast": {"1": 1183, "2": 969, "3": 795, "4": 936, "5": 1256, "6": 992, "7": 977, "8": 727, "9": 851, "10": 962, "11": 806, "12": 1059}, "confidence_intervals": {"1": [9, 2357], "2": [-238, 2176], "3": [-444, 2034], "4": [-334, 2207], "5": [-45, 2557], "6": [-339, 2323], "7": [-383, 2338], "8": [-662, 2116], "9": [-566, 2268], "10": [-483, 2407], "11": [-666, 2277], "12": [-440, 2557]}, "model_stats": {"order": [0, 1, 1], "seasonal_order": [1, 0, 1, 12], "aic": 1761.6378370732612, "bic": 1772.5118325584415, "mae": 437.67706700150836, "rmse": 630.6409109143615, "mape": Infinity, "is_stationary": false, "adf_pvalue": 0.8551560120142718, "training_data_points": 127}}
 
+CMD: python "C:\laragon\www\pariwisata-sarima-main\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\HP\AppData\Local\Temp\sarB98D.tmp" 2>&1
+OUTPUT: Traceback (most recent call last):
+  File "C:\laragon\www\pariwisata-sarima-main\pariwisata-sarima-main/python/sarima_predict.py", line 3, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+
+CMD: python "C:\laragon\www\pariwisata-sarima-main\pariwisata-sarima-main/python/sarima_predict.py" "C:\Users\HP\AppData\Local\Temp\sarC304.tmp" 2>&1
+OUTPUT: Traceback (most recent call last):
+  File "C:\laragon\www\pariwisata-sarima-main\pariwisata-sarima-main/python/sarima_predict.py", line 3, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+

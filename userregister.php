@@ -140,7 +140,8 @@ if (isset($_GET['delid'])) {
                                             ?>
                                                     <tr>
                                                         <td class="text-center"><?php echo htmlentities($cnt); ?></td>
-                                                        <td><?php echo htmlentities($row->FirstName); ?></td>
+                                                        <td><?php echo htmlentities($row->FirstName . ' ' . $row->LastName); ?></td>
+
 
                                                         <td class="text-center"><?php echo htmlentities($row->NamaWisata); ?></td>
                                                         <td><?php echo htmlentities($row->UserName); ?></td>

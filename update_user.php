@@ -6,14 +6,14 @@ if (isset($_POST['saveupdates'])) {
   $adminid = $_SESSION['editid2'];
   $fName2 = $_POST['firstname2'];
   $lName2 = $_POST['lastname2'];
-  $mobno2 = $_POST['phone2'];
-  $email2 = $_POST['email2'];
-  $sql4 = "update users set FirstName=:firstname2,LastName=:lastname2,MobileNumber=:mobilenumber2,Email=:email2 where ID=:aid";
+  $namawisata2 = $_POST['namawisata2'];
+  $username2 = $_POST['username2'];
+  $sql4 = "update users set FirstName=:firstname2,LastName=:lastname2,NamaWisata=:namawisata2,UserName=:username2 where ID=:aid";
   $query4 = $dbh->prepare($sql4);
   $query4->bindParam(':firstname2', $fName2, PDO::PARAM_STR);
   $query4->bindParam(':lastname2', $lName2, PDO::PARAM_STR);
-  $query4->bindParam(':email2', $email2, PDO::PARAM_STR);
-  $query4->bindParam(':mobilenumber2', $mobno2, PDO::PARAM_STR);
+  $query4->bindParam(':username2', $username2, PDO::PARAM_STR);
+  $query4->bindParam(':namawisata2', $namawisata2, PDO::PARAM_STR);
   $query4->bindParam(':aid', $adminid, PDO::PARAM_STR);
   $query4->execute();
   if ($query4->execute()) {
@@ -48,11 +48,11 @@ if (isset($_POST['saveupdates'])) {
         </div>
         <div class="form-group">
           <label for="exampleInputName1">Nama Wisata</label>
-          <input type="text" name="phone2" class="form-control" id="phone2" value="<?php echo $row->MobileNumber; ?>" required>
+          <input type="text" name="namawisata2" class="form-control" id="namawisata2" value="<?php echo $row->NamaWisata; ?>" required>
         </div>
         <div class="form-group">
           <label for="exampleInputName1">Username</label>
-          <input type="text" name="email2" class="form-control" id="email2" value="<?php echo $row->Email; ?>" required>
+          <input type="text" name="username2" class="form-control" id="username2" value="<?php echo $row->UserName; ?>" required>
         </div>
     <?php $cnt = $cnt + 1;
       }

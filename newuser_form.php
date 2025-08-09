@@ -91,51 +91,66 @@ if (!empty($_POST["username"])) {
 </script>
 
 <div class="card-body">
-    <form method="post" name="signup" onSubmit="return valid();">
-        <div class="row">
-            <div class="form-group col-md-6">
+    <form method="post" name="signup" onsubmit="return valid();">
+        <!-- Baris 1: Select Permission & Last Name -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Select Permission</label>
                 <select class="form-control" name="dignity" id="dignity" onchange="toggleWisata()" required>
                     <option value="">Select Permission</option>
                     <option value="Admin">Admin</option>
                     <option value="User">User</option>
                 </select>
             </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-6">
-                <input type="text" class="form-control" name="firstname" placeholder="First Name" required>
-            </div>
-            <div class="form-group col-md-6">
+            <div class="col-md-6">
+                <label>Last Name</label>
                 <input type="text" class="form-control" name="lastname" placeholder="Last Name" required>
             </div>
         </div>
-        <div class="row">
-            <div class="form-group col-md-6">
+
+        <!-- Baris 2: First Name & Nama Panggilan -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>First Name</label>
+                <input type="text" class="form-control" name="firstname" placeholder="First Name" required>
+            </div>
+            <div class="col-md-6">
+                <label>Nama Panggilan</label>
                 <input type="text" class="form-control" name="namapanggilan" placeholder="Nama Panggilan" required>
             </div>
-            <div class="form-group col-md-6">
+        </div>
+
+        <!-- Baris 3: Nama Wisata & Password -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Nama Wisata</label>
                 <input type="text" class="form-control" id="namawisata" name="namawisata" placeholder="Nama Wisata" required>
             </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-6">
+            <div class="col-md-6">
+                <label>Username</label>
                 <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
-                <span id="user-availability-status2" style="font-size:12px;"></span>
             </div>
-            <div class="form-group col-md-6">
+        </div>
+
+        <!-- Baris 4: Username & Confirm Password -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Password</label>
                 <input type="password" class="form-control" name="password" placeholder="Password" required>
             </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-6">
+            <div class="col-md-6">
+                <label>Confirm Password</label>
                 <input type="password" class="form-control" name="confirmpassword" placeholder="Confirm Password" required>
             </div>
         </div>
-        <div class="form-group">
-            <input type="submit" value="Register" name="signup" class="btn btn-info">
+
+        <!-- Tombol Register -->
+        <div class="text-center">
+            <input type="submit" value="Register" name="signup" class="btn btn-primary px-4">
         </div>
     </form>
 </div>
+
 
 <script>
 function toggleWisata() {

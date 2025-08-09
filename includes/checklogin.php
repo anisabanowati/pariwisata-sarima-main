@@ -1,7 +1,11 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 error_reporting(0);
 include('includes/dbconnection.php');
+
 function check_login()
 {
 	if(strlen($_SESSION['odmsaid'])==0)
@@ -11,6 +15,7 @@ function check_login()
 		$extra="index.php";		
 		$_SESSION["id"]="";
 		header("Location: http://$host$uri/$extra");
+		exit(); // Tambahan penting agar proses berhenti setelah redirect
 	}
 }
 ?>

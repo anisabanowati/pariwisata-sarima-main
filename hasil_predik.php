@@ -450,7 +450,7 @@ $months = [
                                                 <div class="card-header bg-primary text-white">
                                                     <h4 class="mb-0">
                                                         <i class="bi bi-bar-chart-line"></i>
-                                                        Prediksi SARIMA untuk <?= htmlspecialchars($filters['nama_wisata']) ?> - Tahun <?= $predYear ?>
+                                                        Prediksi Jumlah Pengunjung untuk <?= htmlspecialchars($filters['nama_wisata']) ?> - Tahun <?= $predYear ?>
                                                     </h4>
                                                 </div>
 
@@ -494,12 +494,16 @@ $months = [
                                                     </table>
                                                 </div>
 
-                                                <div class="chart-container mt-4" style="height: 400px;">
-                                                    <canvas id="forecastChart"></canvas>
+                                                <div class="mt-4">
+                                                 <h5 class="text-center font-weight-bold">Grafik Hasil Prediksi Jumlah Pengunjung Tahun <?= $predYear ?> Berdasarkan Data Dari Tahun-Tahun Sebelumnya</h5>
+                                                <div class="chart-container" style="height: 400px;">
+                                                <canvas id="forecastChart"></canvas>
+                                                </div>
                                                 </div>
 
+
                                                 <div class="alert alert-success mt-3">
-                                                    <i class="bi bi-check-circle"></i> Hasil prediksi telah disimpan dalam database.
+                                                    <i class="bi bi-check-circle"></i> Catatan: Prediksi yang dihasilkan sistem ini hanya berdasarkan data jumlah pengunjung di masa lalu, sehingga hasil prediksi tidak dapat dijadikan patokan pasti dalam pengambilan keputusan.
                                                 </div>
                                             </div>
                                         <?php else: ?>

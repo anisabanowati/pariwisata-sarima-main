@@ -1,6 +1,15 @@
 <?php
 include('includes/checklogin.php');
 check_login();
+
+$aid      = $_SESSION['odmsaid'] ?? 0;
+$isAdmin  = false;
+if ($aid) {
+  $stmt = $dbh->prepare("SELECT AdminName FROM users WHERE ID = :aid LIMIT 1");
+  $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
+  $stmt->execute();
+  $isAdmin = ($stmt->fetchColumn() === 'Admin');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -174,16 +183,20 @@ check_login();
         <div class="content-wrapper">
           <!-- Welcome Banner -->
           <div class="welcome-banner">
-            <div class="row">
-              <div class="col-md-8">
-                <h3>Selamat Datang di Sistem Prediksi Kunjungan Wisatawan di Kabupaten Bantul</h3>
+          <div class="row align-items-center">
+            <div class="col-md-12 d-flex justify-content-between align-items-center">
+              <div class="text-nowrap" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                <h3 class="mb-0">Selamat Datang di Sistem Prediksi Kunjungan Wisatawan di Kabupaten Bantul</h3>
                 <p class="mb-0">Pantau dan kelola data pariwisata Kabupaten Bantul</p>
               </div>
-              <div class="col-md-4 text-right">
+              <div>
                 <i class="fas fa-map-marked-alt fa-3x" style="opacity: 0.3;"></i>
               </div>
             </div>
           </div>
+        </div>
+
+          <?php if ($isAdmin) {  ?>
 
           <!-- Summary Cards -->
           <div class="row">
@@ -308,6 +321,99 @@ check_login();
               </div>
             </div>
           </div>
+          <?php }else{?>
+            <!-- Summary Cards -->
+          <div class="row">
+            <div class="col-md-4">
+              <div class="dashboard-card card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <h6 class="card-title">Total Pengunjung</h6>
+                      <div class="card-value">
+                        <?php
+                        // Query to get total visitors
+                        $total_visitors = 0;
+                        $sql = "SELECT SUM(JumlahPengunjung) as total FROM tourism_data WHERE ID = $aid";
+                        $query = $dbh->prepare($sql);
+                        $query->execute();
+                        $result = $query->fetch(PDO::FETCH_OBJ);
+                        if ($result) {
+                          $total_visitors = $result->total;
+                          echo '<span class="count-up" data-target="' . $total_visitors . '">0</span>';
+                        } else {
+                          echo '0';
+                        }
+                        ?>
+                      </div>
+                    </div>
+                    <div class="col-4 text-right">
+                      <i class="fas fa-users card-icon text-primary"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="dashboard-card card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <h6 class="card-title">Total Pendapatan</h6>
+                      <div class="card-value">
+                        <?php
+                        // Query to get total income
+                        $total_income = 0;
+                        $sql = "SELECT SUM(Pendapatan) as total FROM tourism_data WHERE ID = $aid";
+                        $query = $dbh->prepare($sql);
+                        $query->execute();
+                        $result = $query->fetch(PDO::FETCH_OBJ);
+                        if ($result) {
+                          $total_income = $result->total;
+                          echo 'Rp <span class="count-up" data-target="' . $total_income . '">0</span>';
+                        } else {
+                          echo 'Rp 0';
+                        }
+                        ?>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="dashboard-card card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 ">
+                      <h6 class="card-title">Data Bulanan</h6>
+                      <div class="card-value">
+                        <?php
+                        // Query to count monthly records
+                        $monthly_data = 0;
+                        $sql = "SELECT COUNT(*) as total FROM tourism_data WHERE ID = $aid";
+                        $query = $dbh->prepare($sql);
+                        $query->execute();
+                        $result = $query->fetch(PDO::FETCH_OBJ);
+                        if ($result) {
+                          $monthly_data = $result->total;
+                          echo '<span class="count-up" data-target="' . $monthly_data . '">0</span>';
+                        } else {
+                          echo '0';
+                        }
+                        ?>
+                      </div>
+                    </div>
+                    <div class="col-4 text-right">
+                      <i class="fas fa-calendar-alt card-icon text-warning"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            <?php }?>
 
           <!-- Simplified Trend Table -->
           <div class="row">
@@ -402,66 +508,67 @@ check_login();
 
           <!-- Second Row -->
           <div class="row">
-            <div class="col-md-6">
-              <div class="chart-container">
-                <h5 class="mb-4">Top 5 Destinasi Wisata</h5>
-                <div class="top-destinations">
-                  <?php
-                  // Query to get top 5 destinations by visitors
-                  $sql = "SELECT NamaWisata, SUM(JumlahPengunjung) as total 
-                          FROM tourism_data 
-                          GROUP BY NamaWisata 
-                          ORDER BY total DESC 
-                          LIMIT 5";
-                  $query = $dbh->prepare($sql);
-                  $query->execute();
-                  $destinations = $query->fetchAll(PDO::FETCH_OBJ);
+  <div class="col-md-6 d-flex">
+    <div class="chart-container flex-fill d-flex flex-column">
+      <h5 class="mb-4">Top 5 Destinasi Wisata</h5>
+      <div class="top-destinations flex-grow-1">
+        <?php
+        $sql = "SELECT NamaWisata, SUM(JumlahPengunjung) as total 
+                FROM tourism_data 
+                GROUP BY NamaWisata 
+                ORDER BY total DESC 
+                LIMIT 5";
+        $query = $dbh->prepare($sql);
+        $query->execute();
+        $destinations = $query->fetchAll(PDO::FETCH_OBJ);
 
-                  foreach ($destinations as $destination) {
-                    $image = strtolower(str_replace(' ', '-', $destination->NamaWisata)) . '.jpg';
-                    echo '<div class="destination-item">
-                            <div class="destination-info">
-                                <h6>' . $destination->NamaWisata . '</h6>
-                                <small class="text-muted">Kabupaten Bantul</small>
-                            </div>
-                            <div class="destination-visitors"><span class="count-up" data-target="' . $destination->total . '">0</span></div>
-                          </div>';
-                  }
-                  ?>
-                </div>
-              </div>
-            </div>
+        foreach ($destinations as $destination) {
+          echo '<div class="destination-item mb-3">
+                  <div class="destination-info">
+                    <h6>' . $destination->NamaWisata . '</h6>
+                    <small class="text-muted">Kabupaten Bantul</small>
+                  </div>
+                  <div class="destination-visitors">
+                    <span class="count-up" data-target="' . $destination->total . '">0</span>
+                  </div>
+                </div>';
+        }
+        ?>
+      </div>
+    </div>
+  </div>
 
-            <div class="col-md-6">
-              <div class="chart-container">
-                <h5 class="mb-4">Aktivitas Terkini</h5>
-                <ul class="recent-activity">
-                  <?php
-                  // Query to get recent activities
-                  $sql = "SELECT NamaWisata, JumlahPengunjung, Tanggal 
-                          FROM tourism_data 
-                          ORDER BY Tanggal DESC 
-                          LIMIT 5";
-                  $query = $dbh->prepare($sql);
-                  $query->execute();
-                  $activities = $query->fetchAll(PDO::FETCH_OBJ);
+  <div class="col-md-6 d-flex">
+    <div class="chart-container flex-fill d-flex flex-column">
+      <h5 class="mb-4">Aktivitas Terkini</h5>
+      <ul class="recent-activity flex-grow-1">
+        <?php
+        $sql = "SELECT NamaWisata, JumlahPengunjung, Tanggal 
+                FROM tourism_data 
+                ORDER BY Tanggal DESC 
+                LIMIT 5";
+        $query = $dbh->prepare($sql);
+        $query->execute();
+        $activities = $query->fetchAll(PDO::FETCH_OBJ);
 
-                  foreach ($activities as $activity) {
-                    $date = date('d M Y', strtotime($activity->Tanggal));
-                    echo '<li>
-                            <div class="d-flex justify-content-between">
-                                <strong>' . $activity->NamaWisata . '</strong>
-                                <span class="destination-visitors"><span class="count-up" data-target="' . $activity->JumlahPengunjung . '">0</span></span>
-                            </div>
-                            <div class="activity-time">' . $date . '</div>
-                          </li>';
-                  }
-                  ?>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+        foreach ($activities as $activity) {
+          $date = date('d M Y', strtotime($activity->Tanggal));
+          echo '<li class="mb-3">
+                  <div class="d-flex justify-content-between">
+                    <strong>' . $activity->NamaWisata . '</strong>
+                    <span class="destination-visitors">
+                      <span class="count-up" data-target="' . $activity->JumlahPengunjung . '">0</span>
+                    </span>
+                  </div>
+                  <div class="activity-time">' . $date . '</div>
+                </li>';
+        }
+        ?>
+      </ul>
+    </div>
+  </div>
+</div>
+
 
         <!-- Footer -->
         <?php @include("includes/footer.php"); ?>

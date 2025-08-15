@@ -20,8 +20,8 @@ if (isset($_POST['login'])) {
             $_SESSION['names'] = $result->FirstName;
             $_SESSION['permission'] = $result->AdminName;
             $_SESSION['companyname'] = $result->CompanyName;
-            $_SESSION['role'] = $result->AdminName; // Bisa 'admin' atau 'pengelola'
-            $_SESSION['wisata'] = $result->MobileNumber; // Anggap MobileNumber = Nama Wisata
+            $_SESSION['role'] = $result->AdminName;
+            $_SESSION['wisata'] = $result->MobileNumber;
 
             $get = $result->Status;
         }
@@ -50,7 +50,7 @@ if (isset($_POST['reset_password'])) {
     $firstname = $_POST['reset_firstname'];
     $lastname = $_POST['reset_lastname'];
     $nickname = $_POST['reset_nickname'];
-    $newpassword = md5($_POST['reset_newpassword']); // Simpan dalam bentuk terenkripsi
+    $newpassword = md5($_POST['reset_newpassword']);
 
     $sql = "SELECT * FROM users WHERE UserName=:username AND FirstName=:firstname AND LastName=:lastname AND NamaPanggilan=:nickname";
     $stmt = $dbh->prepare($sql);
@@ -70,8 +70,6 @@ if (isset($_POST['reset_password'])) {
         $message = "Data tidak cocok. Reset gagal.";
     }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -204,41 +202,44 @@ if (isset($_POST['reset_password'])) {
                 <input type="password" name="password" class="form-control" id="password" placeholder="********" required>
             </div>
             <button type="submit" name="login" class="login-btn">Log In</button>
-            <div style="margin-bottom: 20px;"> </div>
-            <a href="#" onclick="document.getElementById('resetModal').style.display='block'" style="margin-top: 12px; display:block;">Lupa password?</a>
+            <div style="margin-bottom: 20px;"></div>
+            <a href="#" 
+               onclick="if(confirm('Silakan menghubungi admin untuk melakukan reset password.\n\nLanjutkan ke form reset password?')) { document.getElementById('resetModal').style.display='block'; } return false;" 
+               style="margin-top: 12px; display:block;">
+               Lupa password?
+            </a>
         </form>
-<!-- Modal Reset Password -->
-<div id="resetModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:999;">
-  <div style="background:#fff; width:90%; max-width:400px; margin:80px auto; padding:30px; border-radius:10px; position:relative;">
-    <h3>Reset Password</h3>
-    <form method="post">
-        <div class="form-group">
-            <label>Username</label>
-            <input type="text" name="reset_username" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label>First Name</label>
-            <input type="text" name="reset_firstname" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" name="reset_lastname" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label>Nama Panggilan</label>
-            <input type="text" name="reset_nickname" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label>Password Baru</label>
-            <input type="password" name="reset_newpassword" class="form-control" required>
-        </div>
-        <button type="submit" name="reset_password" class="login-btn">Reset Password</button>
-        <button type="button" onclick="document.getElementById('resetModal').style.display='none'" style="margin-top:10px; background:#e74c3c;" class="login-btn">Batal</button>
-    </form>
-  </div>
-</div>
 
+        <!-- Modal Reset Password -->
+        <div id="resetModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:999;">
+            <div style="background:#fff; width:90%; max-width:400px; margin:80px auto; padding:30px; border-radius:10px; position:relative;">
+                <h3>Reset Password</h3>
+                <form method="post">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" name="reset_username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" name="reset_firstname" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" name="reset_lastname" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nama Panggilan</label>
+                        <input type="text" name="reset_nickname" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password Baru</label>
+                        <input type="password" name="reset_newpassword" class="form-control" required>
+                    </div>
+                    <button type="submit" name="reset_password" class="login-btn">Reset Password</button>
+                    <button type="button" onclick="document.getElementById('resetModal').style.display='none'" style="margin-top:10px; background:#e74c3c;" class="login-btn">Batal</button>
+                </form>
+            </div>
+        </div>
     </div>
 </body>
-
 </html>
